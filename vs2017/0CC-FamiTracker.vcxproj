@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{92FE0690-CE4F-4CCF-A52C-23265AE7429F}</ProjectGuid>
+    <RootNamespace>0CC-FamiTracker</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <ProjectName>0CC-FamiTracker</ProjectName>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <MinimalRebuild>false</MinimalRebuild>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)include;./;Source/</AdditionalIncludeDirectories>
+      <ObjectFileName>obj/$(IntDir)/%(RelativeDir)</ObjectFileName>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalOptions>/FS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>Dbghelp.lib;winmm.lib;comctl32.lib;dsound.lib;dxguid.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <AdditionalLibraryDirectories>$(LibraryPath);$(DXSDK_DIR)Lib\x86</AdditionalLibraryDirectories>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <Manifest />
+    <Manifest />
+    <Manifest />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+    </Midl>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)include;./;Source/;C:\Users\Administrator\Desktop\foo_sdk;C:\Users\Administrator\Desktop\foo_sdk\foobar2000;C:\Users\Administrator\Desktop\foo_sdk\foobar2000\sdk</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <AssemblerOutput>
+      </AssemblerOutput>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ObjectFileName>obj/$(IntDir)/%(RelativeDir)</ObjectFileName>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <AdditionalOptions>/FS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>Dbghelp.lib;winmm.lib;comctl32.lib;dsound.lib;dxguid.lib;Version.lib;foobar2000_atl_helpers_vs2017_release.lib;foobar2000_component_client_vs2017_release.lib;foobar2000_sdk_helpers_vs2017_release.lib;foobar2000_sdk_vs2017_release.lib;pfc_vs2017_release.lib;shared.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <Version>
+      </Version>
+      <AdditionalLibraryDirectories>$(LibraryPath);$(DXSDK_DIR)Lib\x86;C:\Users\Administrator\Desktop\foo_sdk\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>false</GenerateMapFile>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>nafxcw.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <Manifest />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\apu\2A03.cpp" />
+    <ClCompile Include="..\src\apu\S5B.cpp" />
+    <ClCompile Include="..\src\apu\SoundChip.cpp" />
+    <ClCompile Include="..\src\Bookmark.cpp" />
+    <ClCompile Include="..\src\BookmarkCollection.cpp" />
+    <ClCompile Include="..\src\BookmarkManager.cpp" />
+    <ClCompile Include="..\src\ChannelFactory.cpp" />
+    <ClCompile Include="..\src\ChannelState.cpp" />
+    <ClCompile Include="..\src\FamiTrackerTypes.cpp" />
+    <ClCompile Include="..\src\NoteQueue.cpp" />
+    <ClCompile Include="..\src\RegisterState.cpp" />
+    <ClCompile Include="..\src\DetuneTable.cpp" />
+    <ClCompile Include="..\src\DSampleManager.cpp" />
+    <ClCompile Include="..\src\FamiTracker.cpp" />
+    <ClCompile Include="..\src\FamiTrackerDoc.cpp" />
+    <ClCompile Include="..\src\Groove.cpp" />
+    <ClCompile Include="..\src\InstHandlerDPCM.cpp" />
+    <ClCompile Include="..\src\InstHandlerVRC7.cpp" />
+    <ClCompile Include="..\src\InstrumentFactory.cpp" />
+    <ClCompile Include="..\src\InstrumentManager.cpp" />
+    <ClCompile Include="..\src\ModuleException.cpp" />
+    <ClCompile Include="..\src\OldSequence.cpp" />
+    <ClCompile Include="..\src\PatternNote.cpp" />
+    <ClCompile Include="..\src\SeqInstHandler.cpp" />
+    <ClCompile Include="..\src\SeqInstHandler2A03Pulse.cpp" />
+    <ClCompile Include="..\src\SeqInstHandlerFDS.cpp" />
+    <ClCompile Include="..\src\SeqInstHandlerN163.cpp" />
+    <ClCompile Include="..\src\SeqInstHandlerS5B.cpp" />
+    <ClCompile Include="..\src\SeqInstHandlerSawtooth.cpp" />
+    <ClCompile Include="..\src\SeqInstrument.cpp" />
+    <ClCompile Include="..\src\SequenceCollection.cpp" />
+    <ClCompile Include="..\src\SequenceManager.cpp" />
+    <ClCompile Include="..\src\SimpleFile.cpp" />
+    <ClCompile Include="..\src\stdafx.cpp" />
+    <ClCompile Include="..\src\utils\ftmath.cpp" />
+    <ClCompile Include="..\src\resampler\resample.cpp" />
+    <ClCompile Include="..\src\resampler\sinc.cpp" />
+    <ClCompile Include="..\src\WaveformGenerator.cpp" />
+    <ClCompile Include="..\src\WavegenBuiltin.cpp" />
+    <ClCompile Include="..\src\Compiler.cpp" />
+    <ClCompile Include="..\src\PatternCompiler.cpp" />
+    <ClCompile Include="..\src\CustomExporter.cpp" />
+    <ClCompile Include="..\src\CustomExporter_C_Interface.cpp" />
+    <ClCompile Include="..\src\CustomExporters.cpp" />
+    <ClCompile Include="..\src\DocumentWrapper.cpp" />
+    <ClCompile Include="..\src\TextExporter.cpp" />
+    <ClCompile Include="..\src\Chunk.cpp" />
+    <ClCompile Include="..\src\ChunkRenderBinary.cpp" />
+    <ClCompile Include="..\src\ChunkRenderText.cpp" />
+    <ClCompile Include="..\src\DSample.cpp" />
+    <ClCompile Include="..\src\PatternData.cpp" />
+    <ClCompile Include="..\src\Sequence.cpp" />
+    <ClCompile Include="..\src\Instrument.cpp" />
+    <ClCompile Include="..\src\Instrument2A03.cpp" />
+    <ClCompile Include="..\src\InstrumentFDS.cpp" />
+    <ClCompile Include="..\src\InstrumentN163.cpp" />
+    <ClCompile Include="..\src\InstrumentS5B.cpp" />
+    <ClCompile Include="..\src\InstrumentVRC6.cpp" />
+    <ClCompile Include="..\src\InstrumentVRC7.cpp" />
+    <ClCompile Include="..\src\ChannelMap.cpp" />
+    <ClCompile Include="..\src\SoundGen.cpp" />
+    <ClCompile Include="..\src\TrackerChannel.cpp" />
+    <ClCompile Include="..\src\apu\apu.cpp" />
+    <ClCompile Include="..\src\apu\Mixer.cpp" />
+    <ClCompile Include="..\src\apu\DPCM.cpp" />
+    <ClCompile Include="..\src\apu\Noise.cpp" />
+    <ClCompile Include="..\src\apu\Square.cpp" />
+    <ClCompile Include="..\src\apu\Triangle.cpp" />
+    <ClCompile Include="..\src\apu\FDS.cpp" />
+    <ClCompile Include="..\src\apu\MMC5.CPP" />
+    <ClCompile Include="..\src\apu\N163.CPP" />
+    <ClCompile Include="..\src\apu\VRC6.cpp" />
+    <ClCompile Include="..\src\apu\VRC7.cpp" />
+    <ClCompile Include="..\src\apu\emu2413.c" />
+    <ClCompile Include="..\src\apu\FDSSound.cpp" />
+    <ClCompile Include="..\src\Blip_Buffer\Blip_Buffer.cpp" />
+    <ClCompile Include="..\src\ChannelHandler.cpp" />
+    <ClCompile Include="..\src\Channels2A03.cpp" />
+    <ClCompile Include="..\src\ChannelsFDS.cpp" />
+    <ClCompile Include="..\src\ChannelsMMC5.cpp" />
+    <ClCompile Include="..\src\ChannelsN163.cpp" />
+    <ClCompile Include="..\src\ChannelsS5B.cpp" />
+    <ClCompile Include="..\src\ChannelsVRC6.cpp" />
+    <ClCompile Include="..\src\ChannelsVRC7.cpp" />
+    <ClCompile Include="..\src\MIDI.cpp" />
+    <ClCompile Include="..\src\DocumentFile.cpp" />
+    <ClCompile Include="..\src\InstrumentFileTree.cpp" />
+    <ClCompile Include="..\src\Settings.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\array_view.h" />
+    <ClInclude Include="..\src\apu\2A03.h" />
+    <ClInclude Include="..\src\apu\2A03Chan.h" />
+    <ClInclude Include="..\src\apu\S5B.h" />
+    <ClInclude Include="..\src\Bookmark.h" />
+    <ClInclude Include="..\src\BookmarkCollection.h" />
+    <ClInclude Include="..\src\BookmarkManager.h" />
+    <ClInclude Include="..\src\ClipboardResource.h" />
+    <ClInclude Include="..\src\FFT\FftComplex.hpp" />
+    <ClInclude Include="..\src\IntRange.h" />
+    <ClInclude Include="..\src\NoteQueue.h" />
+    <ClInclude Include="..\src\RegisterState.h" />
+    <ClInclude Include="..\src\DetuneTable.h" />
+    <ClInclude Include="..\src\Factory.h" />
+    <ClInclude Include="..\src\ChannelFactory.h" />
+    <ClInclude Include="..\src\ChannelState.h" />
+    <ClInclude Include="..\src\drivers\drv_2a03.h" />
+    <ClInclude Include="..\src\drivers\drv_all.h" />
+    <ClInclude Include="..\src\drivers\drv_fds.h" />
+    <ClInclude Include="..\src\drivers\drv_mmc5.h" />
+    <ClInclude Include="..\src\drivers\drv_n163.h" />
+    <ClInclude Include="..\src\drivers\drv_s5b.h" />
+    <ClInclude Include="..\src\drivers\drv_vrc6.h" />
+    <ClInclude Include="..\src\drivers\drv_vrc7.h" />
+    <ClInclude Include="..\src\DSampleManager.h" />
+    <ClInclude Include="..\src\ChannelHandlerInterface.h" />
+    <ClInclude Include="..\src\FamiTracker.h" />
+    <ClInclude Include="..\src\FamiTrackerDoc.h" />
+    <ClInclude Include="..\src\FamiTrackerTypes.h" />
+    <ClInclude Include="..\src\FTMComponentInterface.h" />
+    <ClInclude Include="..\src\Groove.h" />
+    <ClInclude Include="..\src\InstHandler.h" />
+    <ClInclude Include="..\src\InstHandlerDPCM.h" />
+    <ClInclude Include="..\src\InstHandlerVRC7.h" />
+    <ClInclude Include="..\src\Instrument2A03.h" />
+    <ClInclude Include="..\src\InstrumentFactory.h" />
+    <ClInclude Include="..\src\InstrumentFDS.h" />
+    <ClInclude Include="..\src\InstrumentManager.h" />
+    <ClInclude Include="..\src\InstrumentManagerInterface.h" />
+    <ClInclude Include="..\src\InstrumentN163.h" />
+    <ClInclude Include="..\src\InstrumentS5B.h" />
+    <ClInclude Include="..\src\InstrumentVRC6.h" />
+    <ClInclude Include="..\src\InstrumentVRC7.h" />
+    <ClInclude Include="..\src\ModuleException.h" />
+    <ClInclude Include="..\src\OldSequence.h" />
+    <ClInclude Include="..\src\PatternNote.h" />
+    <ClInclude Include="..\src\SeqInstHandler2A03Pulse.h" />
+    <ClInclude Include="..\src\SeqInstHandlerS5B.h" />
+    <ClInclude Include="..\src\SeqInstHandlerSawtooth.h" />
+    <ClInclude Include="..\src\SeqInstrument.h" />
+    <ClInclude Include="..\src\SeqInstHandler.h" />
+    <ClInclude Include="..\src\SeqInstHandlerFDS.h" />
+    <ClInclude Include="..\src\SeqInstHandlerN163.h" />
+    <ClInclude Include="..\src\SequenceCollection.h" />
+    <ClInclude Include="..\src\SequenceManager.h" />
+    <ClInclude Include="..\src\SimpleFile.h" />
+    <ClInclude Include="..\src\stdafx.h" />
+    <ClInclude Include="..\src\str_conv\str_conv.hpp" />
+    <ClInclude Include="..\src\str_conv\utf8_conv.hpp" />
+    <ClInclude Include="..\src\to_sv.h" />
+    <ClInclude Include="..\src\type_safe\arithmetic_policy.hpp" />
+    <ClInclude Include="..\src\type_safe\boolean.hpp" />
+    <ClInclude Include="..\src\type_safe\bounded_type.hpp" />
+    <ClInclude Include="..\src\type_safe\compact_optional.hpp" />
+    <ClInclude Include="..\src\type_safe\config.hpp" />
+    <ClInclude Include="..\src\type_safe\constrained_type.hpp" />
+    <ClInclude Include="..\src\type_safe\deferred_construction.hpp" />
+    <ClInclude Include="..\src\type_safe\detail\aligned_union.hpp" />
+    <ClInclude Include="..\src\type_safe\detail\all_of.hpp" />
+    <ClInclude Include="..\src\type_safe\detail\assert.hpp" />
+    <ClInclude Include="..\src\type_safe\detail\assign_or_construct.hpp" />
+    <ClInclude Include="..\src\type_safe\detail\constant_parser.hpp" />
+    <ClInclude Include="..\src\type_safe\detail\copy_move_control.hpp" />
+    <ClInclude Include="..\src\type_safe\detail\force_inline.hpp" />
+    <ClInclude Include="..\src\type_safe\detail\is_nothrow_swappable.hpp" />
+    <ClInclude Include="..\src\type_safe\detail\map_invoke.hpp" />
+    <ClInclude Include="..\src\type_safe\detail\variant_impl.hpp" />
+    <ClInclude Include="..\src\type_safe\downcast.hpp" />
+    <ClInclude Include="..\src\type_safe\flag.hpp" />
+    <ClInclude Include="..\src\type_safe\flag_set.hpp" />
+    <ClInclude Include="..\src\type_safe\floating_point.hpp" />
+    <ClInclude Include="..\src\type_safe\index.hpp" />
+    <ClInclude Include="..\src\type_safe\integer.hpp" />
+    <ClInclude Include="..\src\type_safe\narrow_cast.hpp" />
+    <ClInclude Include="..\src\type_safe\optional.hpp" />
+    <ClInclude Include="..\src\type_safe\optional_ref.hpp" />
+    <ClInclude Include="..\src\type_safe\output_parameter.hpp" />
+    <ClInclude Include="..\src\type_safe\reference.hpp" />
+    <ClInclude Include="..\src\type_safe\strong_typedef.hpp" />
+    <ClInclude Include="..\src\type_safe\tagged_union.hpp" />
+    <ClInclude Include="..\src\type_safe\types.hpp" />
+    <ClInclude Include="..\src\type_safe\variant.hpp" />
+    <ClInclude Include="..\src\type_safe\visitor.hpp" />
+    <ClInclude Include="..\src\utils\ftmath.h" />
+    <ClInclude Include="..\src\utils\input.h" />
+    <ClInclude Include="..\src\WaveformGenerator.h" />
+    <ClInclude Include="..\src\WavegenBuiltin.h" />
+    <ClInclude Include="..\src\winsdk\VersionHelpers.h" />
+    <ClInclude Include="..\src\winsdk\winapifamily.h" />
+    <ClInclude Include="..\src\Version.h" />
+    <ClInclude Include="..\src\ChannelMap.h" />
+    <ClInclude Include="..\src\Common.h" />
+    <ClInclude Include="..\src\SoundGen.h" />
+    <ClInclude Include="..\src\TrackerChannel.h" />
+    <ClInclude Include="..\src\apu\apu.h" />
+    <ClInclude Include="..\src\apu\Channel.h" />
+    <ClInclude Include="..\src\apu\Mixer.h" />
+    <ClInclude Include="..\src\apu\Types.h" />
+    <ClInclude Include="..\src\apu\DPCM.h" />
+    <ClInclude Include="..\src\apu\Noise.h" />
+    <ClInclude Include="..\src\apu\Square.h" />
+    <ClInclude Include="..\src\apu\Triangle.h" />
+    <ClInclude Include="..\src\apu\SoundChip.h" />
+    <ClInclude Include="..\src\apu\FDS.h" />
+    <ClInclude Include="..\src\apu\MMC5.h" />
+    <ClInclude Include="..\src\apu\N163.h" />
+    <ClInclude Include="..\src\apu\VRC6.h" />
+    <ClInclude Include="..\src\apu\VRC7.h" />
+    <ClInclude Include="..\src\apu\2413tone.h" />
+    <ClInclude Include="..\src\apu\emu2413.h" />
+    <ClInclude Include="..\src\apu\FDSSound.h" />
+    <ClInclude Include="..\src\apu\vrc7tone.h" />
+    <ClInclude Include="..\src\Blip_Buffer\Blip_Buffer.h" />
+    <ClInclude Include="..\src\ChannelHandler.h" />
+    <ClInclude Include="..\src\Channels2A03.h" />
+    <ClInclude Include="..\src\ChannelsFDS.h" />
+    <ClInclude Include="..\src\ChannelsMMC5.h" />
+    <ClInclude Include="..\src\ChannelsN163.h" />
+    <ClInclude Include="..\src\ChannelsS5B.h" />
+    <ClInclude Include="..\src\ChannelsVRC6.h" />
+    <ClInclude Include="..\src\ChannelsVRC7.h" />
+    <ClInclude Include="..\src\resampler\resample.hpp" />
+    <ClInclude Include="..\src\resampler\sinc.hpp" />
+    <ClInclude Include="..\src\Compiler.h" />
+    <ClInclude Include="..\src\Driver.h" />
+    <ClInclude Include="..\src\PatternCompiler.h" />
+    <ClInclude Include="..\src\CustomExporter.h" />
+    <ClInclude Include="..\src\CustomExporter_C_Interface.h" />
+    <ClInclude Include="..\src\CustomExporterInterfaces.h" />
+    <ClInclude Include="..\src\CustomExporters.h" />
+    <ClInclude Include="..\src\DocumentWrapper.h" />
+    <ClInclude Include="..\src\Chunk.h" />
+    <ClInclude Include="..\src\ChunkRenderBinary.h" />
+    <ClInclude Include="..\src\ChunkRenderText.h" />
+    <ClInclude Include="..\src\TextExporter.h" />
+    <ClInclude Include="..\src\FFT\FftBuffer.h" />
+    <ClInclude Include="..\src\MIDI.h" />
+    <ClInclude Include="..\src\DSample.h" />
+    <ClInclude Include="..\src\PatternData.h" />
+    <ClInclude Include="..\src\Sequence.h" />
+    <ClInclude Include="..\src\Instrument.h" />
+    <ClInclude Include="..\src\DocumentFile.h" />
+    <ClInclude Include="..\src\InstrumentFileTree.h" />
+    <ClInclude Include="..\src\Settings.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\nsf driver\n163.s" />
+    <None Include="..\nsf driver\nsf_wrap.s" />
+    <None Include="..\nsf driver\periods.s" />
+    <None Include="..\nsf driver\s5b.s" />
+    <None Include="..\nsf driver\apu.s" />
+    <None Include="..\nsf driver\driver.s" />
+    <None Include="..\nsf driver\effects.s" />
+    <None Include="..\nsf driver\fds.s" />
+    <None Include="..\nsf driver\init.s" />
+    <None Include="..\nsf driver\instrument.s" />
+    <None Include="..\nsf driver\mmc5.s" />
+    <None Include="..\nsf driver\player.s" />
+    <None Include="..\nsf driver\vrc6.s" />
+    <None Include="..\nsf driver\vrc7.s" />
+    <None Include="..\src\resampler\resample.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="res\0CC-FamiTracker.manifest">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </Manifest>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="res\0CC-FamiTracker.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
