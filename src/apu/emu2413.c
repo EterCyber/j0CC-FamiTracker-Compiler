@@ -49,7 +49,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <stdint.h>		// // //
+#include <stdint.h>    // // //
 #include "emu2413.h"
 
 #define INLINE
@@ -1404,13 +1404,13 @@ calc (OPLL * opll)
   }
 
   for (i = 0; i < 6; i++)
-	  if (!(opll->mask & OPLL_MASK_CH (i)) && (CAR(opll,i)->eg_mode != FINISH)) {
-		int32_t absval, val = calc_slot_car (CAR(opll,i), calc_slot_mod(MOD(opll,i)));
-		inst += val;
-		absval = abs(val);
-		if (absval > opll_volumes[i])
-			opll_volumes[i] = val;
-	  }
+    if (!(opll->mask & OPLL_MASK_CH (i)) && (CAR(opll,i)->eg_mode != FINISH)) {
+    int32_t absval, val = calc_slot_car (CAR(opll,i), calc_slot_mod(MOD(opll,i)));
+    inst += val;
+    absval = abs(val);
+    if (absval > opll_volumes[i])
+      opll_volumes[i] = val;
+    }
 
   /* CH6 */
   if (opll->patch_number[6] <= 15)
@@ -1864,7 +1864,7 @@ OPLL_calc_stereo (OPLL * opll, int32_t out[2])
 
 int32_t OPLL_getchanvol(int i)
 {
-	int retval = opll_volumes[i];
-	opll_volumes[i] = 0;
-	return retval;
+  int retval = opll_volumes[i];
+  opll_volumes[i] = 0;
+  return retval;
 }

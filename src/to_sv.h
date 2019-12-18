@@ -34,30 +34,30 @@ namespace conv {
 
 template <typename CharT>
 constexpr std::basic_string_view<CharT> to_sv(const CharT *str) {
-	return std::basic_string_view<CharT>(str);
+  return std::basic_string_view<CharT>(str);
 }
 
 template <typename CharT, typename TraitsT, typename AllocT>
 constexpr std::basic_string_view<CharT> to_sv(const std::basic_string<CharT, TraitsT, AllocT> &str) noexcept {
-	return std::basic_string_view<CharT>(str);
+  return std::basic_string_view<CharT>(str);
 }
 template <typename CharT, typename TraitsT, typename AllocT>
 std::basic_string_view<CharT> to_sv(std::basic_string<CharT, TraitsT, AllocT> &&) = delete;
 
 template <typename CharT>
 constexpr std::basic_string_view<CharT> to_sv(std::basic_string_view<CharT> str) noexcept {
-	return str;
+  return str;
 }
 
 template <typename CharT>
 constexpr std::basic_string_view<CharT> to_sv(array_view<CharT> str) noexcept {
-	return std::basic_string_view<CharT>(str.data(), str.size());
+  return std::basic_string_view<CharT>(str.data(), str.size());
 }
 
 #ifdef _WINDOWS
 template <typename CharT, typename TraitsT>
 std::basic_string_view<CharT> to_sv(const ATL::CStringT<CharT, TraitsT> &str) {
-	return std::basic_string_view<CharT>(str, str.GetLength());
+  return std::basic_string_view<CharT>(str, str.GetLength());
 }
 template <typename CharT, typename TraitsT>
 std::basic_string_view<CharT> to_sv(ATL::CStringT<CharT, TraitsT> &&str) = delete;

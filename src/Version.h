@@ -22,7 +22,7 @@
 
 #pragma once
 
-#define APP_NAME	"j0CC-FamiTracker"
+#define APP_NAME  "j0CC-FamiTracker"
 #define STR_HELPER(x) #x
 #define STR(x) STR_HELPER(x)
 
@@ -37,9 +37,9 @@
 #define VERSION VERSION_API,VERSION_MAJ,VERSION_MIN,VERSION_REV
 
 #define VERSION_STR \
-		STR(VERSION_API) "." \
-		STR(VERSION_MAJ) "." \
-		STR(VERSION_MIN) "." \
-		STR(VERSION_REV)
+    STR(VERSION_API) "." \
+    STR(VERSION_MAJ) "." \
+    STR(VERSION_MIN) "." \
+    STR(VERSION_REV)
 
-#define APP_NAME_VERSION	APP_NAME " " VERSION_STR
+#define APP_NAME_VERSION  APP_NAME " " VERSION_STR

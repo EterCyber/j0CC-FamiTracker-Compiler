@@ -10,8 +10,8 @@
 #ifndef _versionhelpers_H_INCLUDED_
 #define _versionhelpers_H_INCLUDED_
 
-#include "winapifamily.h"		// // //
-//#include "sdkddkver.h"		// // //
+#include "winapifamily.h"    // // //
+//#include "sdkddkver.h"    // // //
 #define _WIN32_WINNT_WIN8                   0x0602
 #define _WIN32_WINNT_WINBLUE                0x0603
 // http://stackoverflow.com/questions/26829896/version-helper-functions-for-windows-xp

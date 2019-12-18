@@ -25,61 +25,61 @@
 #include <array>
 
 constexpr auto Effects(){
-	std::array<Effect, EF_COUNT> effects;
-	for (size_t i = 0; i < EF_COUNT; i++) {
-		int initial = 0;
-		int uiDefault = 0;
+  std::array<Effect, EF_COUNT> effects;
+  for (size_t i = 0; i < EF_COUNT; i++) {
+    int initial = 0;
+    int uiDefault = 0;
 
-		if (i == EF_PITCH || i == EF_FDS_MOD_BIAS) {
-			initial = uiDefault = 0x80;
-		}
-		else if (i == EF_N163_WAVE_BUFFER) {
-			initial = 0x7F;
-		}
-		effects[i] = { EFF_CHAR[i], initial, uiDefault };
-	}
-	return effects;
+    if (i == EF_PITCH || i == EF_FDS_MOD_BIAS) {
+      initial = uiDefault = 0x80;
+    }
+    else if (i == EF_N163_WAVE_BUFFER) {
+      initial = 0x7F;
+    }
+    effects[i] = { EFF_CHAR[i], initial, uiDefault };
+  }
+  return effects;
 }
 const std::array<Effect, EF_COUNT> effects = Effects();
 
 // TODO: Define std::unordered_map<char, effect_t> for all effects, plus each expansion.
 // Faster, but produces duplicate global consts.
-effect_t GetEffectFromChar(TCHAR ch, int Chip, bool *bValid)		// // //
+effect_t GetEffectFromChar(TCHAR ch, int Chip, bool *bValid)    // // //
 {
-	bool dummy;
-	if (bValid == nullptr) bValid = &dummy;
+  bool dummy;
+  if (bValid == nullptr) bValid = &dummy;
 
-	*bValid = true;
+  *bValid = true;
 
-	switch (Chip) {
-	case SNDCHIP_FDS:
-		for (const auto &x : FDS_EFFECTS)
-			if (ch == EFF_CHAR[x])
-				return x;
-		break;
-	case SNDCHIP_N163:
-		for (const auto &x : N163_EFFECTS)
-			if (ch == EFF_CHAR[x])
-				return x;
-		break;
-	case SNDCHIP_S5B:
-		for (const auto &x : S5B_EFFECTS)
-			if (ch == EFF_CHAR[x])
-				return x;
-		break;
-	case SNDCHIP_VRC7:
-		for (const auto &x : VRC7_EFFECTS)
-			if (ch == EFF_CHAR[x])
-				return x;
-		break;
-	}
+  switch (Chip) {
+  case SNDCHIP_FDS:
+    for (const auto &x : FDS_EFFECTS)
+      if (ch == EFF_CHAR[x])
+        return x;
+    break;
+  case SNDCHIP_N163:
+    for (const auto &x : N163_EFFECTS)
+      if (ch == EFF_CHAR[x])
+        return x;
+    break;
+  case SNDCHIP_S5B:
+    for (const auto &x : S5B_EFFECTS)
+      if (ch == EFF_CHAR[x])
+        return x;
+    break;
+  case SNDCHIP_VRC7:
+    for (const auto &x : VRC7_EFFECTS)
+      if (ch == EFF_CHAR[x])
+        return x;
+    break;
+  }
 
-	for (effect_t eff = EF_NONE; eff != EF_COUNT; eff = static_cast<effect_t>(eff + 1)) {
-		if (EFF_CHAR[eff] == ch) {
-			return eff;
-		}
-	}
+  for (effect_t eff = EF_NONE; eff != EF_COUNT; eff = static_cast<effect_t>(eff + 1)) {
+    if (EFF_CHAR[eff] == ch) {
+      return eff;
+    }
+  }
 
-	*bValid = false;
-	return EF_NONE;
+  *bValid = false;
+  return EF_NONE;
 }

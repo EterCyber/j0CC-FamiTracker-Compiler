@@ -26,43 +26,43 @@
 class CChannelMap : public CObject
 {
 public:
-	CChannelMap();
-	~CChannelMap();
-	void SetupSoundChips();
+  CChannelMap();
+  ~CChannelMap();
+  void SetupSoundChips();
 
-	int			GetChipCount() const;
-	LPCTSTR		GetChipName(int Index) const;
-	int			GetChipIdent(int Index) const;
-	int			GetChipIndex(int Ident) const;
-	CInstrument	*GetChipInstrument(int Chip) const;
+  int      GetChipCount() const;
+  LPCTSTR    GetChipName(int Index) const;
+  int      GetChipIdent(int Index) const;
+  int      GetChipIndex(int Ident) const;
+  CInstrument  *GetChipInstrument(int Chip) const;
 
-	// Active channel map
-	void			ResetChannels();
-	void			RegisterChannel(CTrackerChannel *pChannel, int ChannelType, int ChipType);
-	CTrackerChannel	*GetChannel(int Index) const;
-	int				GetChannelType(int Channel) const;
-	int				GetChipType(int Channel) const;
-
-public:
-	static const int CHIP_COUNT = 8;	// Number of allowed expansion chips
+  // Active channel map
+  void      ResetChannels();
+  void      RegisterChannel(CTrackerChannel *pChannel, int ChannelType, int ChipType);
+  CTrackerChannel  *GetChannel(int Index) const;
+  int        GetChannelType(int Channel) const;
+  int        GetChipType(int Channel) const;
 
 public:
-	static CChannelMap *GetObject();
+  static const int CHIP_COUNT = 8;  // Number of allowed expansion chips
+
+public:
+  static CChannelMap *GetObject();
 
 protected:
-	void AddChip(int Ident, inst_type_t Inst, LPCTSTR pName);
+  void AddChip(int Ident, inst_type_t Inst, LPCTSTR pName);
 
 protected:
-	// Chips
-	int				m_iAddedChips;
-	int				m_iChipIdents[CHIP_COUNT];
-	LPCTSTR			m_pChipNames[CHIP_COUNT];
-	inst_type_t		m_iChipInstType[CHIP_COUNT];		// // //
+  // Chips
+  int        m_iAddedChips;
+  int        m_iChipIdents[CHIP_COUNT];
+  LPCTSTR      m_pChipNames[CHIP_COUNT];
+  inst_type_t    m_iChipInstType[CHIP_COUNT];    // // //
 
-	// Current set
-	CTrackerChannel	*m_pChannels[CHANNELS];
-	int				m_iRegisteredChannels;
-	int				m_iChannelTypes[CHANNELS];
-	int				m_iChannelChip[CHANNELS];
+  // Current set
+  CTrackerChannel  *m_pChannels[CHANNELS];
+  int        m_iRegisteredChannels;
+  int        m_iChannelTypes[CHANNELS];
+  int        m_iChannelChip[CHANNELS];
 
 };

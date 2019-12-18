@@ -31,5 +31,5 @@ class CChannelHandler;
 class CChannelFactory : public CFactory<chan_id_t, CChannelHandler>
 {
 public:
-	CChannelFactory();
+  CChannelFactory();
 };

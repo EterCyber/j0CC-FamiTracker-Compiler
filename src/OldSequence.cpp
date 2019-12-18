@@ -31,63 +31,63 @@ COldSequence::COldSequence() : Length(), Value() {}
 
 void COldSequence::AddItem(char len, char val)
 {
-	Length.push_back(len);
-	Value.push_back(val);
+  Length.push_back(len);
+  Value.push_back(val);
 }
 
 unsigned int COldSequence::GetLength() const
 {
-	return Length.size();
+  return Length.size();
 }
 
 // // // moved from CFamiTrackerDoc::ConvertSequence
 
 CSequence *COldSequence::Convert(int Type) const
 {
-	const int Count = GetLength();
-	if (Count == 0 || Count >= MAX_SEQUENCE_ITEMS)
-		return nullptr;
-	
-	int iLoopPoint = -1;
-	int iLength = 0;
-	int ValPtr = 0;
+  const int Count = GetLength();
+  if (Count == 0 || Count >= MAX_SEQUENCE_ITEMS)
+    return nullptr;
+  
+  int iLoopPoint = -1;
+  int iLength = 0;
+  int ValPtr = 0;
 
-	CSequence *pSeq = new CSequence();
+  CSequence *pSeq = new CSequence();
 
-	for (int i = 0; i < Count; ++i) {
-		if (Length[i] < 0) {
-			iLoopPoint = 0;
-			for (int x = Count + Length[i] - 1; x < Count - 1; x++)
-				iLoopPoint += (Length[x] + 1);
-		}
-		else {
-			for (int l = 0; l < Length[i] + 1; l++) {
-				pSeq->SetItem(ValPtr++, (Type == SEQ_PITCH || Type == SEQ_HIPITCH) && l ? 0 : Value[i]);
-				iLength++;
-			}
-		}
-	}
+  for (int i = 0; i < Count; ++i) {
+    if (Length[i] < 0) {
+      iLoopPoint = 0;
+      for (int x = Count + Length[i] - 1; x < Count - 1; x++)
+        iLoopPoint += (Length[x] + 1);
+    }
+    else {
+      for (int l = 0; l < Length[i] + 1; l++) {
+        pSeq->SetItem(ValPtr++, (Type == SEQ_PITCH || Type == SEQ_HIPITCH) && l ? 0 : Value[i]);
+        iLength++;
+      }
+    }
+  }
 
-	if (iLoopPoint != -1) {
-		if (iLoopPoint > iLength)
-			iLoopPoint = iLength;
-		iLoopPoint = iLength - iLoopPoint;
-	}
+  if (iLoopPoint != -1) {
+    if (iLoopPoint > iLength)
+      iLoopPoint = iLength;
+    iLoopPoint = iLength - iLoopPoint;
+  }
 
-	pSeq->SetItemCount(ValPtr);
-	pSeq->SetLoopPoint(iLoopPoint);
+  pSeq->SetItemCount(ValPtr);
+  pSeq->SetLoopPoint(iLoopPoint);
 
-	/*
-	if (Type == SEQ_PITCH || Type == SEQ_HIPITCH) {		// // // (not how they work)
-		if (iLoopPoint != -1) {
-			pSeq->SetItemCount(++ValPtr);
-			pSeq->SetItem(ValPtr, pSeq->GetItem(iLoopPoint));
-			pSeq->SetLoopPoint(++iLoopPoint);
-		}
-		for (int i = ValPtr - 1; i > 0; --i)
-			pSeq->SetItem(i, pSeq->GetItem(i) - pSeq->GetItem(i - 1));
-	}
-	*/
+  /*
+  if (Type == SEQ_PITCH || Type == SEQ_HIPITCH) {    // // // (not how they work)
+    if (iLoopPoint != -1) {
+      pSeq->SetItemCount(++ValPtr);
+      pSeq->SetItem(ValPtr, pSeq->GetItem(iLoopPoint));
+      pSeq->SetLoopPoint(++iLoopPoint);
+    }
+    for (int i = ValPtr - 1; i > 0; --i)
+      pSeq->SetItem(i, pSeq->GetItem(i) - pSeq->GetItem(i - 1));
+  }
+  */
 
-	return pSeq;
+  return pSeq;
 }

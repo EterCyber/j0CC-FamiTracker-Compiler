@@ -27,8 +27,8 @@
 //
 
 CWavegenParam::CWavegenParam(wavegen_param_type_t Type, const char *Name) :
-	m_iParamType(Type),
-	m_pParamName(Name)
+  m_iParamType(Type),
+  m_pParamName(Name)
 {
 }
 
@@ -38,12 +38,12 @@ CWavegenParam::~CWavegenParam()
 
 wavegen_param_type_t CWavegenParam::GetType() const
 {
-	return m_iParamType;
+  return m_iParamType;
 }
 
 const char* CWavegenParam::GetName() const
 {
-	return m_pParamName;
+  return m_pParamName;
 }
 
 //
@@ -51,20 +51,20 @@ const char* CWavegenParam::GetName() const
 //
 
 CWavegenParamUnsigned::CWavegenParamUnsigned(const char *Name) :
-	CWavegenParam(WGPARAM_UNSIGNED, Name),
-	m_iData(0)
+  CWavegenParam(WGPARAM_UNSIGNED, Name),
+  m_iData(0)
 {
 }
 
 unsigned int CWavegenParamUnsigned::GetValue() const
 {
-	return m_iData;
+  return m_iData;
 }
 
 bool CWavegenParamUnsigned::SetValue(const void *Val)
 {
-	m_iData = *reinterpret_cast<const unsigned int*>(Val);
-	return true;
+  m_iData = *reinterpret_cast<const unsigned int*>(Val);
+  return true;
 }
 
 //
@@ -72,20 +72,20 @@ bool CWavegenParamUnsigned::SetValue(const void *Val)
 //
 
 CWavegenParamFloat::CWavegenParamFloat(const char *Name) :
-	CWavegenParam(WGPARAM_FLOAT, Name),
-	m_fData(0.f)
+  CWavegenParam(WGPARAM_FLOAT, Name),
+  m_fData(0.f)
 {
 }
 
 float CWavegenParamFloat::GetValue() const
 {
-	return m_fData;
+  return m_fData;
 }
 
 bool CWavegenParamFloat::SetValue(const void *Val)
 {
-	m_fData = *reinterpret_cast<const float*>(Val);
-	return true;
+  m_fData = *reinterpret_cast<const float*>(Val);
+  return true;
 }
 
 //
@@ -93,20 +93,20 @@ bool CWavegenParamFloat::SetValue(const void *Val)
 //
 
 CWavegenParamBoolean::CWavegenParamBoolean(const char *Name) :
-	CWavegenParam(WGPARAM_BOOLEAN, Name),
-	m_bData(false)
+  CWavegenParam(WGPARAM_BOOLEAN, Name),
+  m_bData(false)
 {
 }
 
 bool CWavegenParamBoolean::GetValue() const
 {
-	return m_bData;
+  return m_bData;
 }
 
 bool CWavegenParamBoolean::SetValue(const void *Val)
 {
-	m_bData = *reinterpret_cast<const bool*>(Val);
-	return true;
+  m_bData = *reinterpret_cast<const bool*>(Val);
+  return true;
 }
 
 //
@@ -116,26 +116,26 @@ bool CWavegenParamBoolean::SetValue(const void *Val)
 const size_t CWavegenParamString::MAX_LENGTH = 1024;
 
 CWavegenParamString::CWavegenParamString(const char *Name) :
-	CWavegenParam(WGPARAM_STRING, Name)
+  CWavegenParam(WGPARAM_STRING, Name)
 {
 }
 
 const char *CWavegenParamString::GetValue() const
 {
-	return m_pData.c_str();
+  return m_pData.c_str();
 }
 
 bool CWavegenParamString::SetValue(const void *Val)
 {
-	char Dest[MAX_LENGTH] = { };
-	char *d = Dest;
-	const char *Src = reinterpret_cast<const char*>(Val);
-	size_t count = 0;
-	while (*Src) {
-		if (++count == MAX_LENGTH)
-			return false;
-		*d++ = *Src++;
-	}
-	m_pData = Dest;
-	return true;
+  char Dest[MAX_LENGTH] = { };
+  char *d = Dest;
+  const char *Src = reinterpret_cast<const char*>(Val);
+  size_t count = 0;
+  while (*Src) {
+    if (++count == MAX_LENGTH)
+      return false;
+    *d++ = *Src++;
+  }
+  m_pData = Dest;
+  return true;
 }

@@ -26,34 +26,34 @@
 class CInstrumentFileTree
 {
 public:
-	CInstrumentFileTree();
-	~CInstrumentFileTree();
+  CInstrumentFileTree();
+  ~CInstrumentFileTree();
 
-	bool BuildMenuTree(CString instrumentPath);
-	CMenu *GetMenu() const;
-	CString GetFile(int Index) const;
-	bool ShouldRebuild() const;
-	void Changed();
+  bool BuildMenuTree(CString instrumentPath);
+  CMenu *GetMenu() const;
+  CString GetFile(int Index) const;
+  bool ShouldRebuild() const;
+  void Changed();
 
 public:
-	// Limits, to avoid very deep recursions
-	static const int RECURSION_LIMIT = 6;
-	static const int MAX_MENUS = 200;
+  // Limits, to avoid very deep recursions
+  static const int RECURSION_LIMIT = 6;
+  static const int MAX_MENUS = 200;
 
-	static const int MENU_BASE = 0x9000;	// Choose a range where no strings are located
+  static const int MENU_BASE = 0x9000;  // Choose a range where no strings are located
 
-	static const int CACHE_TIMEOUT = 60000;	// 1 minute
+  static const int CACHE_TIMEOUT = 60000;  // 1 minute
 
 protected:
-	bool ScanDirectory(CString path, CMenu *pMenu, int level);
-	void DeleteMenuObjects();
+  bool ScanDirectory(CString path, CMenu *pMenu, int level);
+  void DeleteMenuObjects();
 
 private:
-	CMenu *m_pRootMenu;
-	int m_iFileIndex;
-	CArray<CString, CString> m_fileList;
-	CArray<CMenu*, CMenu*> m_menuArray;
-	DWORD m_iTimeout;
-	bool m_bShouldRebuild;
-	int m_iTotalMenusAdded;
+  CMenu *m_pRootMenu;
+  int m_iFileIndex;
+  CArray<CString, CString> m_fileList;
+  CArray<CMenu*, CMenu*> m_menuArray;
+  DWORD m_iTimeout;
+  bool m_bShouldRebuild;
+  int m_iTotalMenusAdded;
 };

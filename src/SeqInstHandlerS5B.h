@@ -26,19 +26,19 @@
 #include "SeqInstHandler.h"
 
 /*!
-	\brief Class for Sunsoft 5B sequence instrument handlers.
-	\details The 5B instruments process noise frequency in the duty sequence.
+  \brief Class for Sunsoft 5B sequence instrument handlers.
+  \details The 5B instruments process noise frequency in the duty sequence.
 */
 class CSeqInstHandlerS5B : public CSeqInstHandler
 {
 public:
-	using CSeqInstHandler::CSeqInstHandler;
+  using CSeqInstHandler::CSeqInstHandler;
 
 private:
-	/*!	\brief Processes the value retrieved from a sequence.
-		\return True if the sequence has finished processing.
-		\param Index The sequence type.
-		\param Setting The sequence setting.
-		\param Value The sequence value to be processed. */
-	virtual bool ProcessSequence(int Index, unsigned Setting, int Value);
+  /*!  \brief Processes the value retrieved from a sequence.
+    \return True if the sequence has finished processing.
+    \param Index The sequence type.
+    \param Setting The sequence setting.
+    \param Value The sequence value to be processed. */
+  virtual bool ProcessSequence(int Index, unsigned Setting, int Value);
 };

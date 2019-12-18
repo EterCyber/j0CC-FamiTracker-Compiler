@@ -25,9 +25,9 @@
 
 class CInstrumentS5B : public CSeqInstrument {
 public:
-	CInstrumentS5B() : CSeqInstrument(INST_S5B) {};		// // //
+  CInstrumentS5B() : CSeqInstrument(INST_S5B) {};    // // //
 
 public:
-	static LPCTSTR SEQUENCE_NAME[];
-	LPCTSTR	GetSequenceName(int Index) const { return SEQUENCE_NAME[Index]; }		// // //
+  static LPCTSTR SEQUENCE_NAME[];
+  LPCTSTR  GetSequenceName(int Index) const { return SEQUENCE_NAME[Index]; }    // // //
 };

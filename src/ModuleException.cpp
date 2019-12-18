@@ -24,29 +24,29 @@
 #include "ModuleException.h"
 
 CModuleException::CModuleException() :
-	std::exception(),
-	m_strError(),
-	m_strFooter()
+  std::exception(),
+  m_strError(),
+  m_strFooter()
 {
 }
 
 const std::string CModuleException::GetErrorString() const
 {
-	std::string out;
-	const int COUNT = m_strError.size();
-	for (int i = 0; i < COUNT; ) {
-		out += *m_strError[i];
-		if (++i == COUNT) break;
-		out += '\n';
-	}
-	if (m_strFooter) {
-		out += '\n';
-		out += *m_strFooter;
-	}
-	return out;
+  std::string out;
+  const int COUNT = m_strError.size();
+  for (int i = 0; i < COUNT; ) {
+    out += *m_strError[i];
+    if (++i == COUNT) break;
+    out += '\n';
+  }
+  if (m_strFooter) {
+    out += '\n';
+    out += *m_strFooter;
+  }
+  return out;
 }
 
 void CModuleException::SetFooter(std::string footer)
 {
-	m_strFooter.reset(new std::string(footer));
+  m_strFooter.reset(new std::string(footer));
 }

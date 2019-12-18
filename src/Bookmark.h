@@ -29,15 +29,15 @@
 class CBookmark
 {
 public:
-	CBookmark(unsigned Frame = 0, unsigned Row = 0);
-	unsigned Distance(const CBookmark &other) const;
-	bool IsEqual(const CBookmark &other) const; // == overridden
-	bool operator==(const CBookmark &other) const;
-	bool operator<(const CBookmark &other) const;
+  CBookmark(unsigned Frame = 0, unsigned Row = 0);
+  unsigned Distance(const CBookmark &other) const;
+  bool IsEqual(const CBookmark &other) const; // == overridden
+  bool operator==(const CBookmark &other) const;
+  bool operator<(const CBookmark &other) const;
 
-	unsigned	m_iFrame;
-	unsigned	m_iRow;
-	stHighlight	m_Highlight;
-	bool		m_bPersist;
-	std::string	m_sName;
+  unsigned  m_iFrame;
+  unsigned  m_iRow;
+  stHighlight  m_Highlight;
+  bool    m_bPersist;
+  std::string  m_sName;
 };

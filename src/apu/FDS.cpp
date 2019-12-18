@@ -22,14 +22,14 @@
 #include "APU.h"
 #include "FDS.h"
 #include "FDSSound.h"
-#include "../RegisterState.h"		// // //
+#include "../RegisterState.h"    // // //
 
 // FDS interface, actual FDS emulation is in FDSSound.cpp
 
 CFDS::CFDS(CMixer *pMixer) : CChannel(pMixer, SNDCHIP_FDS, CHANID_FDS)
 {
-	m_pRegisterLogger->AddRegisterRange(0x4040, 0x408F);		// // //
-	FDSSoundInstall3();
+  m_pRegisterLogger->AddRegisterRange(0x4040, 0x408F);    // // //
+  FDSSoundInstall3();
 }
 
 CFDS::~CFDS()
@@ -38,44 +38,44 @@ CFDS::~CFDS()
 
 void CFDS::Reset()
 {
-	FDSSoundReset();
-	FDSSoundVolume(0);
+  FDSSoundReset();
+  FDSSoundVolume(0);
 }
 
 void CFDS::Write(uint16_t Address, uint8_t Value)
 {
-	FDSSoundWrite(Address, Value);
+  FDSSoundWrite(Address, Value);
 }
 
 uint8_t CFDS::Read(uint16_t Address, bool &Mapped)
 {
-	Mapped = ((0x4040 <= Address && Address <= 0x407f) || (0x4090 == Address) || (0x4092 == Address));
-	return FDSSoundRead(Address);
+  Mapped = ((0x4040 <= Address && Address <= 0x407f) || (0x4090 == Address) || (0x4092 == Address));
+  return FDSSoundRead(Address);
 }
 
 void CFDS::EndFrame()
 {
-	CChannel::EndFrame();
+  CChannel::EndFrame();
 }
 
 void CFDS::Process(uint32_t Time)
 {
-	if (!Time)
-		return;
+  if (!Time)
+    return;
 
-	while (Time--) {
-		Mix(FDSSoundRender() >> 12);
-		++m_iTime;
-	}
+  while (Time--) {
+    Mix(FDSSoundRender() >> 12);
+    ++m_iTime;
+  }
 }
 
-double CFDS::GetFreq(int Channel) const		// // //
+double CFDS::GetFreq(int Channel) const    // // //
 {
-	if (Channel) return 0.;
-	int Lo = m_pRegisterLogger->GetRegister(0x4082)->GetValue();
-	int Hi = m_pRegisterLogger->GetRegister(0x4083)->GetValue();
-	if (Hi & 0x80)
-		return 0.;
-	Lo |= (Hi << 8) & 0xF00;
-	return CAPU::BASE_FREQ_NTSC * (Lo / 4194304.);
+  if (Channel) return 0.;
+  int Lo = m_pRegisterLogger->GetRegister(0x4082)->GetValue();
+  int Hi = m_pRegisterLogger->GetRegister(0x4083)->GetValue();
+  if (Hi & 0x80)
+    return 0.;
+  Lo |= (Hi << 8) & 0xF00;
+  return CAPU::BASE_FREQ_NTSC * (Lo / 4194304.);
 }

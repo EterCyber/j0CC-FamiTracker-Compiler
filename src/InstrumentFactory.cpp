@@ -37,16 +37,16 @@
 
 CInstrumentFactory::CInstrumentFactory() : CFactory()
 {
-	AddProduct<CInstrument2A03>(INST_2A03);
-	AddProduct<CSeqInstrument, inst_type_t>(INST_VRC6, INST_VRC6);
-	AddProduct<CInstrumentVRC7>(INST_VRC7);
-	AddProduct<CInstrumentN163>(INST_N163);
-	AddProduct<CInstrumentFDS>(INST_FDS);
-	AddProduct<CSeqInstrument, inst_type_t>(INST_S5B, INST_S5B);
+  AddProduct<CInstrument2A03>(INST_2A03);
+  AddProduct<CSeqInstrument, inst_type_t>(INST_VRC6, INST_VRC6);
+  AddProduct<CInstrumentVRC7>(INST_VRC7);
+  AddProduct<CInstrumentN163>(INST_N163);
+  AddProduct<CInstrumentFDS>(INST_FDS);
+  AddProduct<CSeqInstrument, inst_type_t>(INST_S5B, INST_S5B);
 }
 
-CInstrument *CInstrumentFactory::CreateNew(inst_type_t Type)		// // // TODO: make this non-static
+CInstrument *CInstrumentFactory::CreateNew(inst_type_t Type)    // // // TODO: make this non-static
 {
-	static CInstrumentFactory a {};
-	return a.Produce(Type);
+  static CInstrumentFactory a {};
+  return a.Produce(Type);
 }

@@ -25,57 +25,57 @@
 
 // CTrackerChannel
 
-#include <afxmt.h>	// For CMutex
-#include "APU/Types.h"		// // //
+#include <afxmt.h>  // For CMutex
+#include "APU/Types.h"    // // //
 #include "FamiTrackerTypes.h"
 
 enum note_prio_t {
-	NOTE_PRIO_0, 
-	NOTE_PRIO_1, 
-	NOTE_PRIO_2
+  NOTE_PRIO_0, 
+  NOTE_PRIO_1, 
+  NOTE_PRIO_2
 };
 
 class CTrackerChannel
 {
 public:
-	CTrackerChannel(LPCTSTR pName, LPCTSTR pShort, const int iChip, chan_id_t iID);		// // //
-	~CTrackerChannel(void);
-	LPCTSTR GetChannelName() const;
-	LPCTSTR GetShortName() const;		// // //
-	const char GetChip() const;
-	chan_id_t GetID() const;		// // //
-	const int GetColumnCount() const;
-	void SetColumnCount(int Count);
+  CTrackerChannel(LPCTSTR pName, LPCTSTR pShort, const int iChip, chan_id_t iID);    // // //
+  ~CTrackerChannel(void);
+  LPCTSTR GetChannelName() const;
+  LPCTSTR GetShortName() const;    // // //
+  const char GetChip() const;
+  chan_id_t GetID() const;    // // //
+  const int GetColumnCount() const;
+  void SetColumnCount(int Count);
 
-	stChanNote GetNote();
-	void SetNote(stChanNote &Note, note_prio_t Priority);
-	bool NewNoteData() const;
-	void Reset();
+  stChanNote GetNote();
+  void SetNote(stChanNote &Note, note_prio_t Priority);
+  bool NewNoteData() const;
+  void Reset();
 
-	void SetVolumeMeter(int Value);
-	int GetVolumeMeter() const;
+  void SetVolumeMeter(int Value);
+  int GetVolumeMeter() const;
 
-	void SetPitch(int Pitch);
-	int GetPitch() const;
+  void SetPitch(int Pitch);
+  int GetPitch() const;
 
-	bool IsInstrumentCompatible(int Instrument, inst_type_t Type) const;		// // //
-	bool IsEffectCompatible(effect_t EffNumber, int EffParam) const;		// // //
-
-private:
-	LPCTSTR m_pChannelName, m_pShortName;		// // //
+  bool IsInstrumentCompatible(int Instrument, inst_type_t Type) const;    // // //
+  bool IsEffectCompatible(effect_t EffNumber, int EffParam) const;    // // //
 
 private:
-	int m_iChip;
-	chan_id_t m_iChannelID;		// // //
-	int m_iColumnCount;
-
-	stChanNote m_Note;
-	bool m_bNewNote;
-	note_prio_t	m_iNotePriority;
-
-	int m_iVolumeMeter;
-	int m_iPitch;
+  LPCTSTR m_pChannelName, m_pShortName;    // // //
 
 private:
-	CCriticalSection m_csNoteLock;
+  int m_iChip;
+  chan_id_t m_iChannelID;    // // //
+  int m_iColumnCount;
+
+  stChanNote m_Note;
+  bool m_bNewNote;
+  note_prio_t  m_iNotePriority;
+
+  int m_iVolumeMeter;
+  int m_iPitch;
+
+private:
+  CCriticalSection m_csNoteLock;
 };

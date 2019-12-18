@@ -29,26 +29,26 @@
 
 CSequenceManager::CSequenceManager(int Count)
 {
-	m_pCollection.resize(Count);
-	for (int i = 0; i < Count; ++i)
-		m_pCollection[i].reset(new CSequenceCollection());
+  m_pCollection.resize(Count);
+  for (int i = 0; i < Count; ++i)
+    m_pCollection[i].reset(new CSequenceCollection());
 }
 
 int CSequenceManager::GetCount() const
 {
-	return m_pCollection.size();
+  return m_pCollection.size();
 }
 
 CSequenceCollection *CSequenceManager::GetCollection(unsigned int Index)
 {
-	if (Index >= m_pCollection.size()) return nullptr;
-	if (!m_pCollection[Index])
-		m_pCollection[Index].reset(new CSequenceCollection());
-	return m_pCollection[Index].get();
+  if (Index >= m_pCollection.size()) return nullptr;
+  if (!m_pCollection[Index])
+    m_pCollection[Index].reset(new CSequenceCollection());
+  return m_pCollection[Index].get();
 }
 
 const CSequenceCollection *CSequenceManager::GetCollection(unsigned int Index) const
 {
-	if (Index >= m_pCollection.size()) return nullptr;
-	return m_pCollection[Index].get();
+  if (Index >= m_pCollection.size()) return nullptr;
+  return m_pCollection[Index].get();
 }

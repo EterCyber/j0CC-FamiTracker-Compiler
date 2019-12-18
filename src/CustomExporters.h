@@ -30,20 +30,20 @@
 class CCustomExporters : public CObject
 {
 public:
-	CCustomExporters( void );
-	~CCustomExporters( void );
+  CCustomExporters( void );
+  ~CCustomExporters( void );
 
-	void GetNames( CStringArray& names ) const;
-	void SetCurrentExporter( CString name );
-	CCustomExporter& GetCurrentExporter( void ) const;
+  void GetNames( CStringArray& names ) const;
+  void SetCurrentExporter( CString name );
+  CCustomExporter& GetCurrentExporter( void ) const;
 
 public:
-	static CCustomExporters *GetObject();
+  static CCustomExporters *GetObject();
 
 private:
-	void FindCustomExporters( CString PluginPath );
+  void FindCustomExporters( CString PluginPath );
 
-	CArray< CCustomExporter, CCustomExporter& > m_customExporters;
-	CCustomExporter* m_currentExporter;
-	
+  CArray< CCustomExporter, CCustomExporter& > m_customExporters;
+  CCustomExporter* m_currentExporter;
+  
 };

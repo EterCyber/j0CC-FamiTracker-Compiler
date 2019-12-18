@@ -27,17 +27,17 @@
 #include "Factory.h"
 
 /*!
-	\brief The instrument factory namespace.
-	\details Including this class will automatically include all other instrument header files.
+  \brief The instrument factory namespace.
+  \details Including this class will automatically include all other instrument header files.
 */
 class CInstrumentFactory : CFactory<inst_type_t, CInstrument>
 {
 private:
-	CInstrumentFactory();
+  CInstrumentFactory();
 public:
-	/*!	\brief Creates a new instrument.
-		\param Type The instrument type, which should be a member of inst_type_t.
-		\return Pointer to the created instrument, or nullptr if the type is invalid.
-	*/
-	static CInstrument *CreateNew(inst_type_t Type);
+  /*!  \brief Creates a new instrument.
+    \param Type The instrument type, which should be a member of inst_type_t.
+    \return Pointer to the created instrument, or nullptr if the type is invalid.
+  */
+  static CInstrument *CreateNew(inst_type_t Type);
 };

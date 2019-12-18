@@ -26,13 +26,13 @@
 
 class CFDS : public CSoundChip, public CChannel {
 public:
-	CFDS(CMixer *pMixer);
-	virtual ~CFDS();
-	void	Reset();
-	void	Write(uint16_t Address, uint8_t Value);
-	uint8_t	Read(uint16_t Address, bool &Mapped);
-	void	EndFrame();
-	void	Process(uint32_t Time);
-	double	GetFreq(int Channel) const;		// // //
-	double	GetFrequency() const { return GetFreq(0); }		// // //
+  CFDS(CMixer *pMixer);
+  virtual ~CFDS();
+  void  Reset();
+  void  Write(uint16_t Address, uint8_t Value);
+  uint8_t  Read(uint16_t Address, bool &Mapped);
+  void  EndFrame();
+  void  Process(uint32_t Time);
+  double  GetFreq(int Channel) const;    // // //
+  double  GetFrequency() const { return GetFreq(0); }    // // //
 };

@@ -28,49 +28,49 @@ const unsigned int CDSampleManager::MAX_DSAMPLES = 64;
 
 CDSampleManager::CDSampleManager() : m_pDSample(), m_iTotalSize(0U)
 {
-	m_pDSample.resize(MAX_DSAMPLES);
+  m_pDSample.resize(MAX_DSAMPLES);
 }
 
 const CDSample *CDSampleManager::GetDSample(unsigned Index) const
 {
-	return m_pDSample[Index].get();
+  return m_pDSample[Index].get();
 }
 
 bool CDSampleManager::SetDSample(unsigned Index, CDSample *pSamp)
 {
-	bool Changed = m_pDSample[Index].get() != pSamp;
-	if (m_pDSample[Index])
-		m_iTotalSize -= m_pDSample[Index]->GetSize();
-	if (pSamp)
-		m_iTotalSize += pSamp->GetSize();
-	m_pDSample[Index].reset(pSamp);
-	return Changed;
+  bool Changed = m_pDSample[Index].get() != pSamp;
+  if (m_pDSample[Index])
+    m_iTotalSize -= m_pDSample[Index]->GetSize();
+  if (pSamp)
+    m_iTotalSize += pSamp->GetSize();
+  m_pDSample[Index].reset(pSamp);
+  return Changed;
 }
 
 bool CDSampleManager::IsSampleUsed(unsigned Index) const
 {
-	return m_pDSample[Index] != nullptr;
+  return m_pDSample[Index] != nullptr;
 }
 
 unsigned int CDSampleManager::GetSampleCount() const
 {
-	unsigned int Count = 0;
-	for (size_t i = 0; i < MAX_DSAMPLES; ++i)
-		if (m_pDSample[i])
-			++Count;
-	return Count;
+  unsigned int Count = 0;
+  for (size_t i = 0; i < MAX_DSAMPLES; ++i)
+    if (m_pDSample[i])
+      ++Count;
+  return Count;
 }
 
 unsigned int CDSampleManager::GetFirstFree() const
 {
-	for (size_t i = 0; i < MAX_DSAMPLES; ++i)
-		if (!m_pDSample[i])
-			return i;
-	return -1;
+  for (size_t i = 0; i < MAX_DSAMPLES; ++i)
+    if (!m_pDSample[i])
+      return i;
+  return -1;
 }
 
 unsigned int CDSampleManager::GetTotalSize() const
 {
-	return m_iTotalSize;
+  return m_iTotalSize;
 }
 

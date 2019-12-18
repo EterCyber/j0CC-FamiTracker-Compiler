@@ -24,91 +24,91 @@
 // This will implement the CFamiTrackerDocInterface for export plugins
 
 CFamiTrackerDocWrapper::CFamiTrackerDocWrapper(CFamiTrackerDoc *pDocument, int iTrack) :
-	m_pDocument(pDocument),
-	m_iTrack(iTrack)
+  m_pDocument(pDocument),
+  m_iTrack(iTrack)
 {
 }
 
 void CFamiTrackerDocWrapper::GetNoteData(unsigned int Frame, unsigned int Channel, unsigned int Row, stChanNote *Data) const
 {
-	m_pDocument->GetNoteData(m_iTrack, Frame, Channel, Row, Data);
+  m_pDocument->GetNoteData(m_iTrack, Frame, Channel, Row, Data);
 }
 
 unsigned int CFamiTrackerDocWrapper::GetFrameCount() const
 {
-	return m_pDocument->GetFrameCount(m_iTrack);
+  return m_pDocument->GetFrameCount(m_iTrack);
 }
 
 unsigned int CFamiTrackerDocWrapper::GetPatternLength() const
 {
-	return m_pDocument->GetPatternLength(m_iTrack);
+  return m_pDocument->GetPatternLength(m_iTrack);
 }
 
 unsigned int CFamiTrackerDocWrapper::GetSongSpeed() const
 {
-	return m_pDocument->GetSongSpeed(m_iTrack);
+  return m_pDocument->GetSongSpeed(m_iTrack);
 }
 
 CSequenceInterface const *CFamiTrackerDocWrapper::GetSequence(unsigned int Index, int Type) const
 {
-	return m_pDocument->GetSequence(INST_2A03, Index, Type);		// // //
+  return m_pDocument->GetSequence(INST_2A03, Index, Type);    // // //
 }
 
 int CFamiTrackerDocWrapper::GetSequenceCount(int Type) const
 {
-	return m_pDocument->GetSequenceCount(INST_2A03, Type);		// // //
+  return m_pDocument->GetSequenceCount(INST_2A03, Type);    // // //
 }
 
 int CFamiTrackerDocWrapper::GetInstrumentCount() const
 {
-	return m_pDocument->GetInstrumentCount();
+  return m_pDocument->GetInstrumentCount();
 }
 
 CInstrument2A03Interface const *CFamiTrackerDocWrapper::Get2A03Instrument(int Instrument) const
 {
-	return std::dynamic_pointer_cast<const CInstrument2A03Interface>(m_pDocument->GetInstrument(Instrument)).get();
+  return std::dynamic_pointer_cast<const CInstrument2A03Interface>(m_pDocument->GetInstrument(Instrument)).get();
 }
 
-CSeqInstrumentInterface const *CFamiTrackerDocWrapper::GetSeqInstrument(int Instrument) const		// // //
+CSeqInstrumentInterface const *CFamiTrackerDocWrapper::GetSeqInstrument(int Instrument) const    // // //
 {
-	return std::dynamic_pointer_cast<const CSeqInstrumentInterface>(m_pDocument->GetInstrument(Instrument)).get();
+  return std::dynamic_pointer_cast<const CSeqInstrumentInterface>(m_pDocument->GetInstrument(Instrument)).get();
 }
 
 unsigned int CFamiTrackerDocWrapper::GetNoteEffectType(unsigned int Frame, unsigned int Channel, unsigned int Row, int Index) const
 {
-	stChanNote Note;
-	m_pDocument->GetNoteData(m_iTrack, Frame, Channel, Row, &Note);
-	return Note.EffNumber[Index];
+  stChanNote Note;
+  m_pDocument->GetNoteData(m_iTrack, Frame, Channel, Row, &Note);
+  return Note.EffNumber[Index];
 }
 
 unsigned int CFamiTrackerDocWrapper::GetNoteEffectParam(unsigned int Frame, unsigned int Channel, unsigned int Row, int Index) const
 {
-	stChanNote Note;
-	m_pDocument->GetNoteData(m_iTrack, Frame, Channel, Row, &Note);
-	return Note.EffParam[Index];
+  stChanNote Note;
+  m_pDocument->GetNoteData(m_iTrack, Frame, Channel, Row, &Note);
+  return Note.EffParam[Index];
 }
 
 int CFamiTrackerDocWrapper::GetSampleCount() const
 {
-	return m_pDocument->GetSampleCount();
+  return m_pDocument->GetSampleCount();
 }
 
 void CFamiTrackerDocWrapper::GetSampleName(unsigned int Index, char *Name) const
 {
-	if (const CDSample *pSamp = m_pDocument->GetSample(Index))		// // //
-		strncpy(Name, pSamp->GetName(), CDSample::MAX_NAME_SIZE);
+  if (const CDSample *pSamp = m_pDocument->GetSample(Index))    // // //
+    strncpy(Name, pSamp->GetName(), CDSample::MAX_NAME_SIZE);
 }
 
 int CFamiTrackerDocWrapper::GetSampleSize(unsigned int Sample) const
 {
-	const CDSample *pSamp = m_pDocument->GetSample(Sample);		// // //
-	if (!pSamp) return 0;
-	return pSamp->GetSize();
+  const CDSample *pSamp = m_pDocument->GetSample(Sample);    // // //
+  if (!pSamp) return 0;
+  return pSamp->GetSize();
 }
 
 char CFamiTrackerDocWrapper::GetSampleData(unsigned int Sample, unsigned int Offset) const
 {
-	const CDSample *pSamp = m_pDocument->GetSample(Sample);		// // //
-	if (!pSamp) return 0;
-	return *(pSamp->GetData() + Offset);
+  const CDSample *pSamp = m_pDocument->GetSample(Sample);    // // //
+  if (!pSamp) return 0;
+  return *(pSamp->GetData() + Offset);
 }

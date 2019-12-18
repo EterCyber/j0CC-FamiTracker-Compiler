@@ -28,29 +28,29 @@
 #include "InstHandlerDPCM.h"
 
 CInstHandlerDPCM::CInstHandlerDPCM(CChannelHandlerInterface *pInterface) :
-	CInstHandler(pInterface, 0)
+  CInstHandler(pInterface, 0)
 {
 }
 
 void CInstHandlerDPCM::LoadInstrument(std::shared_ptr<CInstrument> pInst)
 {
-	m_pInstrument = pInst;
+  m_pInstrument = pInst;
 }
 
 void CInstHandlerDPCM::TriggerInstrument()
 {
-	CChannelHandlerInterfaceDPCM *pInterface = dynamic_cast<CChannelHandlerInterfaceDPCM*>(m_pInterface);
-	if (pInterface == nullptr) return;
-	if (auto pDPCMInst = std::dynamic_pointer_cast<const CInstrument2A03>(m_pInstrument)) {
-		const int Val = m_pInterface->GetNote();
-		const int Octave = GET_OCTAVE(Val);
-		const int Note = GET_NOTE(Val) - 1;
-		if (const CDSample *pSamp = pDPCMInst->GetDSample(Octave, Note)) {
-			pInterface->WriteDCOffset(pDPCMInst->GetSampleDeltaValue(Octave, Note));
-			pInterface->SetLoopOffset(pDPCMInst->GetSampleLoopOffset(Octave, Note));
-			pInterface->PlaySample(pSamp, pDPCMInst->GetSamplePitch(Octave, Note));
-		}
-	}
+  CChannelHandlerInterfaceDPCM *pInterface = dynamic_cast<CChannelHandlerInterfaceDPCM*>(m_pInterface);
+  if (pInterface == nullptr) return;
+  if (auto pDPCMInst = std::dynamic_pointer_cast<const CInstrument2A03>(m_pInstrument)) {
+    const int Val = m_pInterface->GetNote();
+    const int Octave = GET_OCTAVE(Val);
+    const int Note = GET_NOTE(Val) - 1;
+    if (const CDSample *pSamp = pDPCMInst->GetDSample(Octave, Note)) {
+      pInterface->WriteDCOffset(pDPCMInst->GetSampleDeltaValue(Octave, Note));
+      pInterface->SetLoopOffset(pDPCMInst->GetSampleLoopOffset(Octave, Note));
+      pInterface->PlaySample(pSamp, pDPCMInst->GetSamplePitch(Octave, Note));
+    }
+  }
 }
 
 void CInstHandlerDPCM::ReleaseInstrument()

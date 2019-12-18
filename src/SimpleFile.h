@@ -26,24 +26,24 @@
 #include "stdafx.h"
 
 /*!
-	\brief An extension of the MFC file class with methods for writing and reading in different
-	data types.
-	\details This class replaces CInstrumentFile.
+  \brief An extension of the MFC file class with methods for writing and reading in different
+  data types.
+  \details This class replaces CInstrumentFile.
 */
 class CSimpleFile : public CFile
 {
 public:
-	CSimpleFile(LPCTSTR lpszFileName, UINT nOpenFlags);
+  CSimpleFile(LPCTSTR lpszFileName, UINT nOpenFlags);
 
-	void	WriteChar(char Value);
-	void	WriteShort(short Value);
-	void	WriteInt(int Value);
-	void	WriteString(CString Str);
-	void	WriteStringNull(CString Buf);
+  void  WriteChar(char Value);
+  void  WriteShort(short Value);
+  void  WriteInt(int Value);
+  void  WriteString(CString Str);
+  void  WriteStringNull(CString Buf);
 
-	char	ReadChar();
-	short	ReadShort();
-	int		ReadInt();
-	CString	ReadString();
-	CString ReadStringNull();
+  char  ReadChar();
+  short  ReadShort();
+  int    ReadInt();
+  CString  ReadString();
+  CString ReadStringNull();
 };

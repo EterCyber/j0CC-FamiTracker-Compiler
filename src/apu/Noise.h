@@ -26,34 +26,34 @@
 
 #pragma once
 
-#include "2A03Chan.h"		// // //
+#include "2A03Chan.h"    // // //
 
 class CNoise : public C2A03Chan {
 public:
-	CNoise(CMixer *pMixer, int ID);		// // //
-	~CNoise();
+  CNoise(CMixer *pMixer, int ID);    // // //
+  ~CNoise();
 
-	void	Reset();
-	void	Write(uint16_t Address, uint8_t Value);
-	void	WriteControl(uint8_t Value);
-	uint8_t	ReadControl();
-	void	Process(uint32_t Time);
-	double	GetFrequency() const;		// // //
+  void  Reset();
+  void  Write(uint16_t Address, uint8_t Value);
+  void  WriteControl(uint8_t Value);
+  uint8_t  ReadControl();
+  void  Process(uint32_t Time);
+  double  GetFrequency() const;    // // //
 
-	void	LengthCounterUpdate();
-	void	EnvelopeUpdate();
+  void  LengthCounterUpdate();
+  void  EnvelopeUpdate();
 
 public:
-	static const uint16_t	NOISE_PERIODS_NTSC[];
-	static const uint16_t	NOISE_PERIODS_PAL[];
+  static const uint16_t  NOISE_PERIODS_NTSC[];
+  static const uint16_t  NOISE_PERIODS_PAL[];
 
-	const uint16_t *PERIOD_TABLE;
+  const uint16_t *PERIOD_TABLE;
 
 private:
-	uint8_t	m_iLooping, m_iEnvelopeFix, m_iEnvelopeSpeed;
-	uint8_t	m_iEnvelopeVolume, m_iFixedVolume;
-	int8_t	m_iEnvelopeCounter;
-	
-	uint8_t	m_iSampleRate;
-	uint16_t	m_iShiftReg;
+  uint8_t  m_iLooping, m_iEnvelopeFix, m_iEnvelopeSpeed;
+  uint8_t  m_iEnvelopeVolume, m_iFixedVolume;
+  int8_t  m_iEnvelopeCounter;
+  
+  uint8_t  m_iSampleRate;
+  uint16_t  m_iShiftReg;
 };

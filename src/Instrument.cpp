@@ -21,7 +21,7 @@
 */
 
 #include "stdafx.h"
-#include "InstrumentManagerInterface.h"		// // //
+#include "InstrumentManagerInterface.h"    // // //
 #include "Instrument.h"
 
 /*
@@ -29,9 +29,9 @@
  *
  */
 
-CInstrument::CInstrument(inst_type_t type) : m_iType(type), m_pInstManager(nullptr)		// // //
+CInstrument::CInstrument(inst_type_t type) : m_iType(type), m_pInstManager(nullptr)    // // //
 {
-	memset(m_cName, 0, INST_NAME_MAX);
+  memset(m_cName, 0, INST_NAME_MAX);
 }
 
 CInstrument::~CInstrument()
@@ -40,65 +40,65 @@ CInstrument::~CInstrument()
 
 void CInstrument::CloneFrom(const CInstrument *pSeq)
 {
-	SetName(pSeq->GetName());
-	m_iType = pSeq->GetType();
+  SetName(pSeq->GetName());
+  m_iType = pSeq->GetType();
 }
 
 void CInstrument::SetName(const char *Name)
 {
-	strncpy_s(m_cName, Name, INST_NAME_MAX);
-	InstrumentChanged();		// // //
+  strncpy_s(m_cName, Name, INST_NAME_MAX);
+  InstrumentChanged();    // // //
 }
 
 void CInstrument::GetName(char *Name) const
 {
-	strncpy_s(Name, INST_NAME_MAX, m_cName, INST_NAME_MAX);
+  strncpy_s(Name, INST_NAME_MAX, m_cName, INST_NAME_MAX);
 }
 
 const char *CInstrument::GetName() const
 {
-	return m_cName;
+  return m_cName;
 }
 
-void CInstrument::RegisterManager(CInstrumentManagerInterface *pManager)		// // //
+void CInstrument::RegisterManager(CInstrumentManagerInterface *pManager)    // // //
 {
-	m_pInstManager = pManager;
+  m_pInstManager = pManager;
 }
 
-inst_type_t CInstrument::GetType() const		// // //
+inst_type_t CInstrument::GetType() const    // // //
 {
-	return m_iType;
+  return m_iType;
 }
 
 void CInstrument::InstrumentChanged() const
 {
-	// Set modified flag
-	if (m_pInstManager)		// // //
-		m_pInstManager->InstrumentChanged();
+  // Set modified flag
+  if (m_pInstManager)    // // //
+    m_pInstManager->InstrumentChanged();
 }
 
 // File load / store
 
 void CInstrumentFile::WriteInt(unsigned int Value)
 {
-	Write(&Value, sizeof(int));
+  Write(&Value, sizeof(int));
 }
 
 void CInstrumentFile::WriteChar(unsigned char Value)
 {
-	Write(&Value, sizeof(char));
+  Write(&Value, sizeof(char));
 }
 
 unsigned int CInstrumentFile::ReadInt()
 {
-	unsigned int Value;
-	Read(&Value, sizeof(int));
-	return Value;
+  unsigned int Value;
+  Read(&Value, sizeof(int));
+  return Value;
 }
 
 unsigned char CInstrumentFile::ReadChar()
 {
-	unsigned char Value;
-	Read(&Value, sizeof(char));
-	return Value;
+  unsigned char Value;
+  Read(&Value, sizeof(char));
+  return Value;
 }

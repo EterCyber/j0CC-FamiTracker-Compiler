@@ -28,40 +28,40 @@
 
 class CChannelHandlerVRC6 : public CChannelHandler {
 public:
-	CChannelHandlerVRC6(int MaxPeriod, int MaxVolume);		// // //
+  CChannelHandlerVRC6(int MaxPeriod, int MaxVolume);    // // //
 
 protected:
-	// // //
-	bool	HandleEffect(effect_t EffNum, unsigned char EffParam) override;		// // //
-	void	HandleEmptyNote() override;
-	void	HandleCut() override;
-	void	HandleRelease() override;
-	bool	CreateInstHandler(inst_type_t Type) override;		// // //
-	// // //
-	uint16_t getAddress();
-	void	ClearRegisters() override;		// // //
-	void	resetPhase();
+  // // //
+  bool  HandleEffect(effect_t EffNum, unsigned char EffParam) override;    // // //
+  void  HandleEmptyNote() override;
+  void  HandleCut() override;
+  void  HandleRelease() override;
+  bool  CreateInstHandler(inst_type_t Type) override;    // // //
+  // // //
+  uint16_t getAddress();
+  void  ClearRegisters() override;    // // //
+  void  resetPhase();
 };
 
 class CVRC6Square : public CChannelHandlerVRC6 {
 public:
-	CVRC6Square() : CChannelHandlerVRC6(0xFFF, 0x0F) { }
-	void	RefreshChannel() override;
-	int getDutyMax() const override;
+  CVRC6Square() : CChannelHandlerVRC6(0xFFF, 0x0F) { }
+  void  RefreshChannel() override;
+  int getDutyMax() const override;
 protected:
-	static const char MAX_DUTY;		// TODO remove class constant, move to .cpp file
+  static const char MAX_DUTY;    // TODO remove class constant, move to .cpp file
 
-	int		ConvertDuty(int Duty) const override;		// // //
+  int    ConvertDuty(int Duty) const override;    // // //
 };
 
 class CVRC6Sawtooth : public CChannelHandlerVRC6 {
 public:
-	CVRC6Sawtooth() : CChannelHandlerVRC6(0xFFF, 0x3F) { }
-	void	RefreshChannel() override;
-	int getDutyMax() const override;
+  CVRC6Sawtooth() : CChannelHandlerVRC6(0xFFF, 0x3F) { }
+  void  RefreshChannel() override;
+  int getDutyMax() const override;
 protected:
-	static const char MAX_DUTY;		// TODO remove class constant, move to .cpp file
+  static const char MAX_DUTY;    // TODO remove class constant, move to .cpp file
 
-	bool	CreateInstHandler(inst_type_t Type) override;		// // //
-	int		CalculateVolume() const override;
+  bool  CreateInstHandler(inst_type_t Type) override;    // // //
+  int    CalculateVolume() const override;
 };

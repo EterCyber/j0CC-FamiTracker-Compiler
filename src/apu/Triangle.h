@@ -26,31 +26,31 @@
 
 #pragma once
 
-#include "2A03Chan.h"		// // //
+#include "2A03Chan.h"    // // //
 
 class CTriangle : public C2A03Chan {
 public:
-	CTriangle(CMixer *pMixer, int ID);
-	~CTriangle();
+  CTriangle(CMixer *pMixer, int ID);
+  ~CTriangle();
 
-	void	Reset();
-	void	Write(uint16_t Address, uint8_t Value);
-	void	WriteControl(uint8_t Value);
-	uint8_t	ReadControl();
-	void	Process(uint32_t Time);
-	double	GetFrequency() const;		// // //
+  void  Reset();
+  void  Write(uint16_t Address, uint8_t Value);
+  void  WriteControl(uint8_t Value);
+  uint8_t  ReadControl();
+  void  Process(uint32_t Time);
+  double  GetFrequency() const;    // // //
 
-	void	LengthCounterUpdate();
-	void	LinearCounterUpdate();
+  void  LengthCounterUpdate();
+  void  LinearCounterUpdate();
 
 public:
-	uint32_t CPU_RATE;		// // //
+  uint32_t CPU_RATE;    // // //
 
 private:
-	static const uint8_t TRIANGLE_WAVE[];
+  static const uint8_t TRIANGLE_WAVE[];
 
 private:
-	uint8_t	m_iLoop, m_iLinearLoad, m_iHalt;
-	uint16_t	m_iLinearCounter;
-	int8_t	m_iStepGen;
+  uint8_t  m_iLoop, m_iLinearLoad, m_iHalt;
+  uint16_t  m_iLinearCounter;
+  int8_t  m_iStepGen;
 };

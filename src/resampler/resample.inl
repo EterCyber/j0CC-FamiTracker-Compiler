@@ -54,7 +54,7 @@ template <typename Base>
 
         std::fill(&*buf_.begin(), start, 0.f);
 //        fillcheck(&* buf_.begin(), start, &*buf_.end());
-        fillcheck(	&buf_[0], start, &buf_[0] + buf_.size());
+        fillcheck(  &buf_[0], start, &buf_[0] + buf_.size());
 
 
     }
@@ -94,7 +94,7 @@ template <typename Base>
 
 
 
-		fillcheck(&buf_[0], start, &buf_[0] + buf_.size());
+    fillcheck(&buf_[0], start, &buf_[0] + buf_.size());
     }
 
 }

@@ -44,7 +44,7 @@ typedef struct __OPLL_SLOT {
   int32_t block ;         /* Block */
   int32_t volume ;        /* Current volume */
   int32_t sustine ;       /* Sustine 1 = ON, 0 = OFF */
-  uint32_t tll ;	      /* Total Level + Key scale level*/
+  uint32_t tll ;        /* Total Level + Key scale level*/
   uint32_t rks ;        /* Key scale offset (Rks) */
   int32_t eg_mode ;       /* Current state */
   uint32_t eg_phase ;   /* Phase */

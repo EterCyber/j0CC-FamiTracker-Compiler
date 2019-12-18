@@ -28,15 +28,15 @@
 class CDSampleManager
 {
 public:
-	CDSampleManager();
-	const CDSample *GetDSample(unsigned Index) const;
-	bool SetDSample(unsigned Index, CDSample *pSamp);
-	bool IsSampleUsed(unsigned Index) const;
-	unsigned int GetSampleCount() const;
-	unsigned int GetFirstFree() const;
-	unsigned int GetTotalSize() const;
-	static const unsigned MAX_DSAMPLES;
+  CDSampleManager();
+  const CDSample *GetDSample(unsigned Index) const;
+  bool SetDSample(unsigned Index, CDSample *pSamp);
+  bool IsSampleUsed(unsigned Index) const;
+  unsigned int GetSampleCount() const;
+  unsigned int GetFirstFree() const;
+  unsigned int GetTotalSize() const;
+  static const unsigned MAX_DSAMPLES;
 private:
-	std::vector<std::unique_ptr<CDSample>> m_pDSample;
-	unsigned int m_iTotalSize;
+  std::vector<std::unique_ptr<CDSample>> m_pDSample;
+  unsigned int m_iTotalSize;
 };

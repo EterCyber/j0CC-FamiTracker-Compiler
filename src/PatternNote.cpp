@@ -24,34 +24,34 @@
 #include "PatternNote.h"
 
 const CString stChanNote::NOTE_NAME[NOTE_RANGE] = {
-	_T("C-"), _T("C#"), _T("D-"), _T("D#"),
-	_T("E-"), _T("F-"), _T("F#"), _T("G-"),
-	_T("G#"), _T("A-"), _T("A#"), _T("B-"),
+  _T("C-"), _T("C#"), _T("D-"), _T("D#"),
+  _T("E-"), _T("F-"), _T("F#"), _T("G-"),
+  _T("G#"), _T("A-"), _T("A#"), _T("B-"),
 };
 
 const CString stChanNote::NOTE_NAME_FLAT[NOTE_RANGE] = {
-	_T("C-"), _T("Db"), _T("D-"), _T("Eb"),
-	_T("E-"), _T("F-"), _T("Gb"), _T("G-"),
-	_T("Ab"), _T("A-"), _T("Bb"), _T("B-"),
+  _T("C-"), _T("Db"), _T("D-"), _T("Eb"),
+  _T("E-"), _T("F-"), _T("Gb"), _T("G-"),
+  _T("Ab"), _T("A-"), _T("Bb"), _T("B-"),
 };
 
 CString stChanNote::ToString() const
 {
-	switch (Note) {
-	case NONE: return _T("...");
-	case HALT: return _T("---");
-	case RELEASE: return _T("===");
-	case ECHO:
-		{
-			CString str;
-			str.Format(_T("^-%d"), Octave);
-			return str;
-		}
-	default:
-		{
-			CString str;
-			str.Format(_T("%s%d"), NOTE_NAME[Note - 1], Octave);
-			return str;
-		}
-	}
+  switch (Note) {
+  case NONE: return _T("...");
+  case HALT: return _T("---");
+  case RELEASE: return _T("===");
+  case ECHO:
+    {
+      CString str;
+      str.Format(_T("^-%d"), Octave);
+      return str;
+    }
+  default:
+    {
+      CString str;
+      str.Format(_T("%s%d"), NOTE_NAME[Note - 1], Octave);
+      return str;
+    }
+  }
 }

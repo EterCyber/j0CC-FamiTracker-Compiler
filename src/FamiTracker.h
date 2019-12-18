@@ -29,7 +29,7 @@
 #define SUPPORT_TRANSLATIONS
 
 //#ifndef __AFXWIN_H__
-//	#error include 'stdafx.h' before including this file for PCH
+//  #error include 'stdafx.h' before including this file for PCH
 //#endif
 
 void ftm_convert_to_nsf(const TCHAR *ftm_filepath, const TCHAR *nsf_filepath);

@@ -25,26 +25,26 @@
 
 class CInstrumentVRC7 : public CInstrument {
 public:
-	CInstrumentVRC7();
-	CInstrument* Clone() const;
-	void	Setup();
-	void	Store(CDocumentFile *pDocFile);
-	bool	Load(CDocumentFile *pDocFile);
-	void	SaveFile(CInstrumentFile *pFile);
-	bool	LoadFile(CInstrumentFile *pFile, int iVersion);
-	int		Compile(CChunk *pChunk, int Index);
-	bool	CanRelease() const;
+  CInstrumentVRC7();
+  CInstrument* Clone() const;
+  void  Setup();
+  void  Store(CDocumentFile *pDocFile);
+  bool  Load(CDocumentFile *pDocFile);
+  void  SaveFile(CInstrumentFile *pFile);
+  bool  LoadFile(CInstrumentFile *pFile, int iVersion);
+  int    Compile(CChunk *pChunk, int Index);
+  bool  CanRelease() const;
 
 public:
-	void		 SetPatch(unsigned int Patch);
-	unsigned int GetPatch() const;
-	void		 SetCustomReg(int Reg, unsigned char Value);		// // //
-	unsigned char GetCustomReg(int Reg) const;		// // //
+  void     SetPatch(unsigned int Patch);
+  unsigned int GetPatch() const;
+  void     SetCustomReg(int Reg, unsigned char Value);    // // //
+  unsigned char GetCustomReg(int Reg) const;    // // //
 
 protected:
-	virtual void	CloneFrom(const CInstrument *pInst);		// // //
+  virtual void  CloneFrom(const CInstrument *pInst);    // // //
 
 private:
-	unsigned int m_iPatch;
-	unsigned char m_iRegs[8];		// // // Custom patch settings
+  unsigned int m_iPatch;
+  unsigned char m_iRegs[8];    // // // Custom patch settings
 };

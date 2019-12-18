@@ -28,9 +28,9 @@
 class CInstHandlerDPCM : public CInstHandler
 {
 public:
-	CInstHandlerDPCM(CChannelHandlerInterface *pInterface);
-	void LoadInstrument(std::shared_ptr<CInstrument> pInst) override;
-	void TriggerInstrument() override;
-	void ReleaseInstrument() override;
-	void UpdateInstrument() override;
+  CInstHandlerDPCM(CChannelHandlerInterface *pInterface);
+  void LoadInstrument(std::shared_ptr<CInstrument> pInst) override;
+  void TriggerInstrument() override;
+  void ReleaseInstrument() override;
+  void UpdateInstrument() override;
 };

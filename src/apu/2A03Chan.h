@@ -25,27 +25,27 @@
 
 #include "Channel.h"
 
-class C2A03Chan : public CChannel {		// // //
+class C2A03Chan : public CChannel {    // // //
 public:
-	C2A03Chan(CMixer *pMixer, uint8_t Chip, uint8_t ID) : CChannel(pMixer, Chip, ID) { }
+  C2A03Chan(CMixer *pMixer, uint8_t Chip, uint8_t ID) : CChannel(pMixer, Chip, ID) { }
 
-	inline uint16_t GetPeriod() const {
-		return m_iPeriod;
-	}
-
-protected:
-	inline void Mix(int32_t Value) {
-		if (m_iLastValue != Value) {
-			m_pMixer->AddValue(m_iChanId, m_iChip, Value, Value, m_iTime);
-			m_iLastValue = Value;
-		}
-	};
+  inline uint16_t GetPeriod() const {
+    return m_iPeriod;
+  }
 
 protected:
-	// Variables used by channels
-	uint8_t		m_iControlReg;
-	uint8_t		m_iEnabled;
-	uint16_t	m_iPeriod;
-	uint16_t	m_iLengthCounter;
-	uint32_t	m_iCounter;
+  inline void Mix(int32_t Value) {
+    if (m_iLastValue != Value) {
+      m_pMixer->AddValue(m_iChanId, m_iChip, Value, Value, m_iTime);
+      m_iLastValue = Value;
+    }
+  };
+
+protected:
+  // Variables used by channels
+  uint8_t    m_iControlReg;
+  uint8_t    m_iEnabled;
+  uint16_t  m_iPeriod;
+  uint16_t  m_iLengthCounter;
+  uint32_t  m_iCounter;
 };

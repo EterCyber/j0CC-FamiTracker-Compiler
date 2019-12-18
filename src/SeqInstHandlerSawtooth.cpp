@@ -27,12 +27,12 @@
 
 void CSeqInstHandlerSawtooth::TriggerInstrument()
 {
-	CSeqInstHandler::TriggerInstrument();
-	m_bIgnoreDuty = m_pSequence[SEQ_VOLUME] != nullptr &&
-					m_pSequence[SEQ_VOLUME]->GetSetting() == SETTING_VOL_64_STEPS;
+  CSeqInstHandler::TriggerInstrument();
+  m_bIgnoreDuty = m_pSequence[SEQ_VOLUME] != nullptr &&
+          m_pSequence[SEQ_VOLUME]->GetSetting() == SETTING_VOL_64_STEPS;
 }
 
 bool CSeqInstHandlerSawtooth::IsDutyIgnored() const
 {
-	return m_bIgnoreDuty;
+  return m_bIgnoreDuty;
 }

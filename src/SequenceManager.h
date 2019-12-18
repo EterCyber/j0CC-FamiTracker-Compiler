@@ -27,10 +27,10 @@ class CSequenceCollection;
 class CSequenceManager
 {
 public:
-	CSequenceManager(int Count);
-	int GetCount() const;
-	CSequenceCollection *GetCollection(unsigned int Type);
-	const CSequenceCollection *GetCollection(unsigned int Type) const;
+  CSequenceManager(int Count);
+  int GetCount() const;
+  CSequenceCollection *GetCollection(unsigned int Type);
+  const CSequenceCollection *GetCollection(unsigned int Type) const;
 private:
-	std::vector<std::unique_ptr<CSequenceCollection>> m_pCollection;
+  std::vector<std::unique_ptr<CSequenceCollection>> m_pCollection;
 };

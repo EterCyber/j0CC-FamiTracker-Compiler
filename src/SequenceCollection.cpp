@@ -30,36 +30,36 @@ const int CSequenceCollection::MAX_SEQUENCES = 128;
 
 CSequenceCollection::CSequenceCollection()
 {
-	m_pSequence.resize(MAX_SEQUENCES);
+  m_pSequence.resize(MAX_SEQUENCES);
 }
 
 CSequence *CSequenceCollection::GetSequence(unsigned int Index)
 {
-	if (!m_pSequence[Index])
-		m_pSequence[Index].reset(new CSequence());
-	return m_pSequence[Index].get();
+  if (!m_pSequence[Index])
+    m_pSequence[Index].reset(new CSequence());
+  return m_pSequence[Index].get();
 }
 
 void CSequenceCollection::SetSequence(unsigned int Index, CSequence *Seq)
 {
-	m_pSequence[Index].reset(Seq);
+  m_pSequence[Index].reset(Seq);
 }
 
 const CSequence *CSequenceCollection::GetSequence(unsigned int Index) const
 {
-	return m_pSequence[Index].get();
+  return m_pSequence[Index].get();
 }
 
 unsigned int CSequenceCollection::GetFirstFree() const
 {
-	for (int i = 0; i < MAX_SEQUENCES; i++)
-		if (m_pSequence[i] == nullptr || !m_pSequence[i]->GetItemCount())
-			return i;
-	return -1;
+  for (int i = 0; i < MAX_SEQUENCES; i++)
+    if (m_pSequence[i] == nullptr || !m_pSequence[i]->GetItemCount())
+      return i;
+  return -1;
 }
 
 void CSequenceCollection::RemoveAll()
 {
-	for (auto it = m_pSequence.begin(); it < m_pSequence.end(); ++it)
-		it->reset();
+  for (auto it = m_pSequence.begin(); it < m_pSequence.end(); ++it)
+    it->reset();
 }

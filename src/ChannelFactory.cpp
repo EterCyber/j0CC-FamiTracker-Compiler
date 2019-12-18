@@ -37,46 +37,46 @@
 
 CChannelFactory::CChannelFactory() : CFactory()
 {
-	FuncType Func;
+  FuncType Func;
 
-	Func = MakeCtor<C2A03Square>();
-	m_pMakeFunc[CHANID_SQUARE1] = Func;
-	m_pMakeFunc[CHANID_SQUARE2] = Func;
-	AddProduct<CTriangleChan>(CHANID_TRIANGLE);
-	AddProduct<CNoiseChan>(CHANID_NOISE);
-	AddProduct<CDPCMChan>(CHANID_DPCM);
-	
-	Func = MakeCtor<CVRC6Square>();
-	m_pMakeFunc[CHANID_VRC6_PULSE1] = Func;
-	m_pMakeFunc[CHANID_VRC6_PULSE2] = Func;
-	AddProduct<CVRC6Sawtooth>(CHANID_VRC6_SAWTOOTH);
+  Func = MakeCtor<C2A03Square>();
+  m_pMakeFunc[CHANID_SQUARE1] = Func;
+  m_pMakeFunc[CHANID_SQUARE2] = Func;
+  AddProduct<CTriangleChan>(CHANID_TRIANGLE);
+  AddProduct<CNoiseChan>(CHANID_NOISE);
+  AddProduct<CDPCMChan>(CHANID_DPCM);
+  
+  Func = MakeCtor<CVRC6Square>();
+  m_pMakeFunc[CHANID_VRC6_PULSE1] = Func;
+  m_pMakeFunc[CHANID_VRC6_PULSE2] = Func;
+  AddProduct<CVRC6Sawtooth>(CHANID_VRC6_SAWTOOTH);
 
-	Func = MakeCtor<CVRC7Channel>();
-	m_pMakeFunc[CHANID_VRC7_CH1] = Func;
-	m_pMakeFunc[CHANID_VRC7_CH2] = Func;
-	m_pMakeFunc[CHANID_VRC7_CH3] = Func;
-	m_pMakeFunc[CHANID_VRC7_CH4] = Func;
-	m_pMakeFunc[CHANID_VRC7_CH5] = Func;
-	m_pMakeFunc[CHANID_VRC7_CH6] = Func;
+  Func = MakeCtor<CVRC7Channel>();
+  m_pMakeFunc[CHANID_VRC7_CH1] = Func;
+  m_pMakeFunc[CHANID_VRC7_CH2] = Func;
+  m_pMakeFunc[CHANID_VRC7_CH3] = Func;
+  m_pMakeFunc[CHANID_VRC7_CH4] = Func;
+  m_pMakeFunc[CHANID_VRC7_CH5] = Func;
+  m_pMakeFunc[CHANID_VRC7_CH6] = Func;
 
-	AddProduct<CChannelHandlerFDS>(CHANID_FDS);
-	
-	Func = MakeCtor<CChannelHandlerMMC5>();
-	m_pMakeFunc[CHANID_MMC5_SQUARE1] = Func;
-	m_pMakeFunc[CHANID_MMC5_SQUARE2] = Func;
-	
-	Func = MakeCtor<CChannelHandlerN163>();
-	m_pMakeFunc[CHANID_N163_CH1] = Func;
-	m_pMakeFunc[CHANID_N163_CH2] = Func;
-	m_pMakeFunc[CHANID_N163_CH3] = Func;
-	m_pMakeFunc[CHANID_N163_CH4] = Func;
-	m_pMakeFunc[CHANID_N163_CH5] = Func;
-	m_pMakeFunc[CHANID_N163_CH6] = Func;
-	m_pMakeFunc[CHANID_N163_CH7] = Func;
-	m_pMakeFunc[CHANID_N163_CH8] = Func;
-	
-	Func = MakeCtor<CChannelHandlerS5B>();
-	m_pMakeFunc[CHANID_S5B_CH1] = Func;
-	m_pMakeFunc[CHANID_S5B_CH2] = Func;
-	m_pMakeFunc[CHANID_S5B_CH3] = Func;
+  AddProduct<CChannelHandlerFDS>(CHANID_FDS);
+  
+  Func = MakeCtor<CChannelHandlerMMC5>();
+  m_pMakeFunc[CHANID_MMC5_SQUARE1] = Func;
+  m_pMakeFunc[CHANID_MMC5_SQUARE2] = Func;
+  
+  Func = MakeCtor<CChannelHandlerN163>();
+  m_pMakeFunc[CHANID_N163_CH1] = Func;
+  m_pMakeFunc[CHANID_N163_CH2] = Func;
+  m_pMakeFunc[CHANID_N163_CH3] = Func;
+  m_pMakeFunc[CHANID_N163_CH4] = Func;
+  m_pMakeFunc[CHANID_N163_CH5] = Func;
+  m_pMakeFunc[CHANID_N163_CH6] = Func;
+  m_pMakeFunc[CHANID_N163_CH7] = Func;
+  m_pMakeFunc[CHANID_N163_CH8] = Func;
+  
+  Func = MakeCtor<CChannelHandlerS5B>();
+  m_pMakeFunc[CHANID_S5B_CH1] = Func;
+  m_pMakeFunc[CHANID_S5B_CH2] = Func;
+  m_pMakeFunc[CHANID_S5B_CH3] = Func;
 }

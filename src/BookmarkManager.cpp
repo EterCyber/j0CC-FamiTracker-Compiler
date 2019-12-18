@@ -28,56 +28,56 @@
 #include "BookmarkManager.h"
 
 CBookmarkManager::CBookmarkManager(unsigned Count) :
-	m_pCollection(Count)
+  m_pCollection(Count)
 {
-	ClearAll();
+  ClearAll();
 }
 
 void CBookmarkManager::ClearAll()
 {
-	for (size_t i = 0; i < m_pCollection.size(); ++i)
-		m_pCollection[i].reset(new CBookmarkCollection());
+  for (size_t i = 0; i < m_pCollection.size(); ++i)
+    m_pCollection[i].reset(new CBookmarkCollection());
 }
 
 CBookmarkCollection *CBookmarkManager::GetCollection(unsigned Track) const
 {
-	return Track >= m_pCollection.size() ? nullptr : m_pCollection[Track].get();
+  return Track >= m_pCollection.size() ? nullptr : m_pCollection[Track].get();
 }
 
 CBookmarkCollection *CBookmarkManager::PopCollection(unsigned Track)
 {
-	if (Track >= m_pCollection.size()) return nullptr;
-	CBookmarkCollection *pCol = m_pCollection[Track].release();
-	m_pCollection[Track].reset(new CBookmarkCollection());
-	return pCol;
+  if (Track >= m_pCollection.size()) return nullptr;
+  CBookmarkCollection *pCol = m_pCollection[Track].release();
+  m_pCollection[Track].reset(new CBookmarkCollection());
+  return pCol;
 }
 
 void CBookmarkManager::SetCollection(unsigned Track, CBookmarkCollection *const pCol)
 {
-	m_pCollection[Track].reset(pCol);
+  m_pCollection[Track].reset(pCol);
 }
 
 unsigned int CBookmarkManager::GetBookmarkCount() const
 {
-	int Total = 0;
-	for (size_t i = 0; i < m_pCollection.size(); ++i)
-		Total += m_pCollection[i]->GetCount();
-	return Total;
+  int Total = 0;
+  for (size_t i = 0; i < m_pCollection.size(); ++i)
+    Total += m_pCollection[i]->GetCount();
+  return Total;
 }
 
 void CBookmarkManager::InsertTrack(unsigned Track)
 {
-	m_pCollection.resize(m_pCollection.size() - 1);
-	m_pCollection.insert(m_pCollection.begin() + Track, std::unique_ptr<CBookmarkCollection>(new CBookmarkCollection()));
+  m_pCollection.resize(m_pCollection.size() - 1);
+  m_pCollection.insert(m_pCollection.begin() + Track, std::unique_ptr<CBookmarkCollection>(new CBookmarkCollection()));
 }
 
 void CBookmarkManager::RemoveTrack(unsigned Track)
 {
-	m_pCollection.erase(m_pCollection.begin() + Track);
-	m_pCollection.insert(m_pCollection.end(), std::unique_ptr<CBookmarkCollection>(new CBookmarkCollection()));
+  m_pCollection.erase(m_pCollection.begin() + Track);
+  m_pCollection.insert(m_pCollection.end(), std::unique_ptr<CBookmarkCollection>(new CBookmarkCollection()));
 }
 
 void CBookmarkManager::SwapTracks(unsigned A, unsigned B)
 {
-	m_pCollection[A].swap(m_pCollection[B]);
+  m_pCollection[A].swap(m_pCollection[B]);
 }

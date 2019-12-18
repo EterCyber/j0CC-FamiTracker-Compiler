@@ -28,54 +28,54 @@ typedef unsigned char DPCM_List_t[MAX_INSTRUMENTS][OCTAVE_RANGE][NOTE_RANGE];
 class CPatternCompiler
 {
 public:
-	CPatternCompiler(CFamiTrackerDoc *pDoc, unsigned int *pInstList, DPCM_List_t *pDPCMList, CCompilerLog *pLogger);
-	~CPatternCompiler();
+  CPatternCompiler(CFamiTrackerDoc *pDoc, unsigned int *pInstList, DPCM_List_t *pDPCMList, CCompilerLog *pLogger);
+  ~CPatternCompiler();
 
-	void			CompileData(int Track, int Pattern, int Channel);
-	
-	unsigned int	GetHash() const;
-	bool			CompareData(const std::vector<char> &data) const;
+  void      CompileData(int Track, int Pattern, int Channel);
+  
+  unsigned int  GetHash() const;
+  bool      CompareData(const std::vector<char> &data) const;
 
-	const std::vector<char> &GetData() const;
-	const std::vector<char> &GetCompressedData() const;
+  const std::vector<char> &GetData() const;
+  const std::vector<char> &GetCompressedData() const;
 
-	unsigned int	GetDataSize() const;
-	unsigned int	GetCompressedDataSize() const;
+  unsigned int  GetDataSize() const;
+  unsigned int  GetCompressedDataSize() const;
 
-private:	
-	struct stSpacingInfo {
-		int SpaceCount;
-		int SpaceSize;
-	};
-
-private:
-	unsigned int	FindInstrument(int Instrument) const;
-	unsigned int	FindSample(int Instrument, int Octave, int Key) const;
-
-	unsigned char	Command(int cmd) const;
-
-	void			WriteData(unsigned char Value);
-	void			WriteDuration();
-	void			AccumulateDuration();
-	void			OptimizeString();
-	int				GetBlockSize(int Position);
-	void			ScanNoteLengths(stSpacingInfo &Info, int Track, unsigned int StartRow, int Pattern, int Channel);
-
-	// Debugging
-	void			Print(LPCTSTR text) const;
+private:  
+  struct stSpacingInfo {
+    int SpaceCount;
+    int SpaceSize;
+  };
 
 private:
-	std::vector<char> m_vData;
-	std::vector<char> m_vCompressedData;
+  unsigned int  FindInstrument(int Instrument) const;
+  unsigned int  FindSample(int Instrument, int Octave, int Key) const;
 
-	unsigned int	m_iDuration;
-	unsigned int	m_iCurrentDefaultDuration;
-	bool			m_bDSamplesAccessed[OCTAVE_RANGE * NOTE_RANGE]; // <- check the range, its not optimal right now
-	unsigned int	m_iHash;
-	unsigned int	*m_pInstrumentList;
+  unsigned char  Command(int cmd) const;
 
-	DPCM_List_t		*m_pDPCMList;
+  void      WriteData(unsigned char Value);
+  void      WriteDuration();
+  void      AccumulateDuration();
+  void      OptimizeString();
+  int        GetBlockSize(int Position);
+  void      ScanNoteLengths(stSpacingInfo &Info, int Track, unsigned int StartRow, int Pattern, int Channel);
 
-	CFamiTrackerDoc *m_pDocument;
-	CCompilerLog	*m_pLogger;
+  // Debugging
+  void      Print(LPCTSTR text) const;
+
+private:
+  std::vector<char> m_vData;
+  std::vector<char> m_vCompressedData;
+
+  unsigned int  m_iDuration;
+  unsigned int  m_iCurrentDefaultDuration;
+  bool      m_bDSamplesAccessed[OCTAVE_RANGE * NOTE_RANGE]; // <- check the range, its not optimal right now
+  unsigned int  m_iHash;
+  unsigned int  *m_pInstrumentList;
+
+  DPCM_List_t    *m_pDPCMList;
+
+  CFamiTrackerDoc *m_pDocument;
+  CCompilerLog  *m_pLogger;
 };

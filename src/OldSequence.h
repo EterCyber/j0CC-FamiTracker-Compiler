@@ -30,19 +30,19 @@ class CSequence;
 class COldSequence
 {
 public:
-	COldSequence();
-	void AddItem(char len, char val);
-	unsigned int GetLength() const;
-	CSequence *Convert(int Type) const;
-	std::vector<char> Length;
-	std::vector<char> Value;
+  COldSequence();
+  void AddItem(char len, char val);
+  unsigned int GetLength() const;
+  CSequence *Convert(int Type) const;
+  std::vector<char> Length;
+  std::vector<char> Value;
 };
 
 /*
 // Old sequence list, kept for compability
 struct stSequence {
-	unsigned int Count;
-	signed char Length[CSequence::MAX_SEQUENCE_ITEMS];
-	signed char Value[MAX_SEQUENCE_ITEMS];
+  unsigned int Count;
+  signed char Length[CSequence::MAX_SEQUENCE_ITEMS];
+  signed char Value[MAX_SEQUENCE_ITEMS];
 };
 */

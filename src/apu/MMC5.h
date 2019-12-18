@@ -24,28 +24,28 @@
 #include "SoundChip.h"
 #include "Channel.h"
 
-class CSquare;		// // //
+class CSquare;    // // //
 
 class CMMC5 : public CSoundChip {
 public:
-	CMMC5(CMixer *pMixer);
-	virtual ~CMMC5();
+  CMMC5(CMixer *pMixer);
+  virtual ~CMMC5();
 
-	void Reset();
-	void Write(uint16_t Address, uint8_t Value);
-	uint8_t Read(uint16_t Address, bool &Mapped);
-	void EndFrame();
-	void Process(uint32_t Time);
-	double GetFreq(int Channel) const;		// // //
+  void Reset();
+  void Write(uint16_t Address, uint8_t Value);
+  uint8_t Read(uint16_t Address, bool &Mapped);
+  void EndFrame();
+  void Process(uint32_t Time);
+  double GetFreq(int Channel) const;    // // //
 
-	void LengthCounterUpdate();
-	void EnvelopeUpdate();
-	void ClockSequence();		// // //
+  void LengthCounterUpdate();
+  void EnvelopeUpdate();
+  void ClockSequence();    // // //
 
-private:	
-	CSquare	*m_pSquare1;
-	CSquare	*m_pSquare2;
-	uint8_t	*m_pEXRAM;
-	uint8_t	m_iMulLow;
-	uint8_t	m_iMulHigh;
+private:  
+  CSquare  *m_pSquare1;
+  CSquare  *m_pSquare2;
+  uint8_t  *m_pEXRAM;
+  uint8_t  m_iMulLow;
+  uint8_t  m_iMulHigh;
 };

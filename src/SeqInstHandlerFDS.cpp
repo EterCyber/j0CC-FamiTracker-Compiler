@@ -32,45 +32,45 @@
  * Class CSeqInstHandlerFDS
  */
 
-void CSeqInstHandlerFDS::LoadInstrument(std::shared_ptr<CInstrument> pInst)		// // //
+void CSeqInstHandlerFDS::LoadInstrument(std::shared_ptr<CInstrument> pInst)    // // //
 {
-	CSeqInstHandler::LoadInstrument(pInst);
+  CSeqInstHandler::LoadInstrument(pInst);
 
-	if (auto pFDSInst = std::dynamic_pointer_cast<const CInstrumentFDS>(m_pInstrument))
-		UpdateTables(pFDSInst.get());
+  if (auto pFDSInst = std::dynamic_pointer_cast<const CInstrumentFDS>(m_pInstrument))
+    UpdateTables(pFDSInst.get());
 }
 
 void CSeqInstHandlerFDS::TriggerInstrument()
 {
-	CSeqInstHandler::TriggerInstrument();
+  CSeqInstHandler::TriggerInstrument();
 
-	auto *pInterface = dynamic_cast<CChannelHandlerInterfaceFDS*>(m_pInterface);
-	if (pInterface == nullptr) return;
-	auto pFDSInst = std::dynamic_pointer_cast<const CInstrumentFDS>(m_pInstrument);
-	if (pFDSInst == nullptr) return;
-	pInterface->SetFMSpeed(pFDSInst->GetModulationSpeed());
-	pInterface->SetFMDepth(pFDSInst->GetModulationDepth());
-	pInterface->SetFMDelay(pFDSInst->GetModulationDelay());
-	UpdateTables(pFDSInst.get());
+  auto *pInterface = dynamic_cast<CChannelHandlerInterfaceFDS*>(m_pInterface);
+  if (pInterface == nullptr) return;
+  auto pFDSInst = std::dynamic_pointer_cast<const CInstrumentFDS>(m_pInstrument);
+  if (pFDSInst == nullptr) return;
+  pInterface->SetFMSpeed(pFDSInst->GetModulationSpeed());
+  pInterface->SetFMDepth(pFDSInst->GetModulationDepth());
+  pInterface->SetFMDelay(pFDSInst->GetModulationDelay());
+  UpdateTables(pFDSInst.get());
 }
 
 void CSeqInstHandlerFDS::UpdateInstrument()
 {
-	CSeqInstHandler::UpdateInstrument();
-	
-	if (auto pFDSInst = std::dynamic_pointer_cast<const CInstrumentFDS>(m_pInstrument))
-		UpdateTables(pFDSInst.get());
+  CSeqInstHandler::UpdateInstrument();
+  
+  if (auto pFDSInst = std::dynamic_pointer_cast<const CInstrumentFDS>(m_pInstrument))
+    UpdateTables(pFDSInst.get());
 }
 
 void CSeqInstHandlerFDS::UpdateTables(const CInstrumentFDS *pInst)
 {
-	auto *pInterface = dynamic_cast<CChannelHandlerInterfaceFDS*>(m_pInterface);
-	if (pInterface == nullptr) return;
-	char Buffer[0x40];		// // //
-	for (int i = 0; i < 0x40; i++)
-		Buffer[i] = pInst->GetSample(i);
-	pInterface->FillWaveRAM(Buffer);
-	for (int i = 0; i < 0x20; i++)
-		Buffer[i] = pInst->GetModulation(i);
-	pInterface->FillModulationTable(Buffer);
+  auto *pInterface = dynamic_cast<CChannelHandlerInterfaceFDS*>(m_pInterface);
+  if (pInterface == nullptr) return;
+  char Buffer[0x40];    // // //
+  for (int i = 0; i < 0x40; i++)
+    Buffer[i] = pInst->GetSample(i);
+  pInterface->FillWaveRAM(Buffer);
+  for (int i = 0; i < 0x20; i++)
+    Buffer[i] = pInst->GetModulation(i);
+  pInterface->FillModulationTable(Buffer);
 }

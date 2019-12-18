@@ -25,7 +25,7 @@ unsigned int GetLoopPoint(SequenceHandle sequence);
 //instrument functions
 int GetInstrumentCount();
 Instrument2A03Handle Get2A03Instrument(int Instrument);
-SeqInstrumentHandle GetSeqInstrument(int Instrument);		// // //
+SeqInstrumentHandle GetSeqInstrument(int Instrument);    // // //
 
 int GetSeqEnable(SeqInstrumentHandle instrument, int Index);
 int GetSeqIndex(SeqInstrumentHandle instrument, int Index);

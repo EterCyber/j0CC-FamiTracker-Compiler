@@ -27,20 +27,20 @@
 
 bool CSeqInstHandlerS5B::ProcessSequence(int Index, unsigned Setting, int Value)
 {
-	switch (Index) {
-	case SEQ_DUTYCYCLE:
-		if (auto pChan = dynamic_cast<CChannelHandlerInterfaceS5B*>(m_pInterface)) {
-			m_pInterface->SetDutyPeriod(Value & 0xE0);
+  switch (Index) {
+  case SEQ_DUTYCYCLE:
+    if (auto pChan = dynamic_cast<CChannelHandlerInterfaceS5B*>(m_pInterface)) {
+      m_pInterface->SetDutyPeriod(Value & 0xE0);
 
-			if (Value & S5B_MODE_NOISE) {
-				pChan->SetNoiseFreq(Value & 0x1F);
-			}
-			
-			return true;
-			
-			// In chips other than 5B: case SEQ_DUTYCYCLE:
-			// m_pInterface->SetDutyPeriod(Value);
-		}
-	}
-	return CSeqInstHandler::ProcessSequence(Index, Setting, Value);
+      if (Value & S5B_MODE_NOISE) {
+        pChan->SetNoiseFreq(Value & 0x1F);
+      }
+      
+      return true;
+      
+      // In chips other than 5B: case SEQ_DUTYCYCLE:
+      // m_pInterface->SetDutyPeriod(Value);
+    }
+  }
+  return CSeqInstHandler::ProcessSequence(Index, Setting, Value);
 }

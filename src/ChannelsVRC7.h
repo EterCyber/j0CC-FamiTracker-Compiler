@@ -27,74 +27,74 @@
 //
 
 enum vrc7_command_t {
-	CMD_NONE, 
-	CMD_NOTE_ON,
-	CMD_NOTE_TRIGGER,
-	CMD_NOTE_OFF, 
-	CMD_NOTE_HALT,
-	CMD_NOTE_RELEASE
+  CMD_NONE, 
+  CMD_NOTE_ON,
+  CMD_NOTE_TRIGGER,
+  CMD_NOTE_OFF, 
+  CMD_NOTE_HALT,
+  CMD_NOTE_RELEASE
 };
 
 class CChannelHandlerInterfaceVRC7;
 
-class CChannelHandlerVRC7 : public FrequencyChannelHandler, public CChannelHandlerInterfaceVRC7 {		// // //
+class CChannelHandlerVRC7 : public FrequencyChannelHandler, public CChannelHandlerInterfaceVRC7 {    // // //
 public:
-	CChannelHandlerVRC7();
-	void	SetChannelID(int ID) override;
+  CChannelHandlerVRC7();
+  void  SetChannelID(int ID) override;
 
-	void	SetPatch(unsigned char Patch);		// // //
-	void	SetCustomReg(size_t Index, unsigned char Val);		// // //
-
-protected:
-	void	HandleNoteData(stChanNote *pNoteData, int EffColumns) override;
-	bool	HandleEffect(effect_t EffNum, unsigned char EffParam) override;		// // //
-	void	HandleEmptyNote() override;
-	void	HandleCut() override;
-	void	HandleRelease() override;
-	void	HandleNote(int Note, int Octave) override;
-	int		RunNote(int Octave, int Note) override;		// // //
-	bool	CreateInstHandler(inst_type_t Type) override;		// // //
-	void	SetupSlide() override;		// // //
-	int		CalculateVolume() const override;
-	int		CalculatePeriod() const override;		// // //
-
-	void	UpdateNoteRelease() override;		// // //
-	int		TriggerNote(int Note) override;
+  void  SetPatch(unsigned char Patch);    // // //
+  void  SetCustomReg(size_t Index, unsigned char Val);    // // //
 
 protected:
-	void CorrectOctave();		// // //
-	unsigned int GetFnum(int Note) const;
+  void  HandleNoteData(stChanNote *pNoteData, int EffColumns) override;
+  bool  HandleEffect(effect_t EffNum, unsigned char EffParam) override;    // // //
+  void  HandleEmptyNote() override;
+  void  HandleCut() override;
+  void  HandleRelease() override;
+  void  HandleNote(int Note, int Octave) override;
+  int    RunNote(int Octave, int Note) override;    // // //
+  bool  CreateInstHandler(inst_type_t Type) override;    // // //
+  void  SetupSlide() override;    // // //
+  int    CalculateVolume() const override;
+  int    CalculatePeriod() const override;    // // //
+
+  void  UpdateNoteRelease() override;    // // //
+  int    TriggerNote(int Note) override;
 
 protected:
-	static bool m_bRegsDirty;
-	static char m_cPatchFlag;		// // // 050B
-	static unsigned char m_iPatchRegs[8];		// // // 050B
+  void CorrectOctave();    // // //
+  unsigned int GetFnum(int Note) const;
 
 protected:
-	unsigned char m_iChannel;
-	char m_iPatch;
+  static bool m_bRegsDirty;
+  static char m_cPatchFlag;    // // // 050B
+  static unsigned char m_iPatchRegs[8];    // // // 050B
 
-	bool	m_bHold;
+protected:
+  unsigned char m_iChannel;
+  char m_iPatch;
 
-	vrc7_command_t m_iCommand;
+  bool  m_bHold;
 
-	int		m_iTriggeredNote;
-	int		m_iOctave;
-	int		m_iOldOctave;		// // //
-	int		m_iCustomPort;		// // // 050B
+  vrc7_command_t m_iCommand;
+
+  int    m_iTriggeredNote;
+  int    m_iOctave;
+  int    m_iOldOctave;    // // //
+  int    m_iCustomPort;    // // // 050B
 };
 
 class CVRC7Channel : public CChannelHandlerVRC7 {
 public:
-	CVRC7Channel() : CChannelHandlerVRC7() { }
-	void RefreshChannel();
+  CVRC7Channel() : CChannelHandlerVRC7() { }
+  void RefreshChannel();
 
-	int getDutyMax() const override;
+  int getDutyMax() const override;
 protected:
-	static const char MAX_DUTY;		// TODO remove class constant, move to .cpp file
+  static const char MAX_DUTY;    // TODO remove class constant, move to .cpp file
 
-	void ClearRegisters();
+  void ClearRegisters();
 private:
-	void RegWrite(unsigned char Reg, unsigned char Value);
+  void RegWrite(unsigned char Reg, unsigned char Value);
 };
 

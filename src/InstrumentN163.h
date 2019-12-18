@@ -25,46 +25,46 @@
 
 class CInstrumentN163 : public CSeqInstrument {
 public:
-	CInstrumentN163();
-	CInstrument* Clone() const;
-	void	Store(CDocumentFile *pDocFile);
-	bool	Load(CDocumentFile *pDocFile);
-	void	SaveFile(CInstrumentFile *pFile);
-	bool	LoadFile(CInstrumentFile *pFile, int iVersion);
-	int		Compile(CChunk *pChunk, int Index);
+  CInstrumentN163();
+  CInstrument* Clone() const;
+  void  Store(CDocumentFile *pDocFile);
+  bool  Load(CDocumentFile *pDocFile);
+  void  SaveFile(CInstrumentFile *pFile);
+  bool  LoadFile(CInstrumentFile *pFile, int iVersion);
+  int    Compile(CChunk *pChunk, int Index);
 
 public:
-	int		GetWaveSize() const;
-	void	SetWaveSize(int size);
-	int		GetWavePos() const;
-	void	SetWavePos(int pos);
-	int		GetSample(int wave, int pos) const;
-	void	SetSample(int wave, int pos, int sample);
+  int    GetWaveSize() const;
+  void  SetWaveSize(int size);
+  int    GetWavePos() const;
+  void  SetWavePos(int pos);
+  int    GetSample(int wave, int pos) const;
+  void  SetSample(int wave, int pos, int sample);
 
-	void	SetWaveCount(int count);
-	int		GetWaveCount() const;
+  void  SetWaveCount(int count);
+  int    GetWaveCount() const;
 
-	int		StoreWave(CChunk *pChunk) const;
-	bool	IsWaveEqual(CInstrumentN163 *pInstrument);
-	
-	bool	InsertNewWave(int Index);		// // //
-	bool	RemoveWave(int Index);		// // //
+  int    StoreWave(CChunk *pChunk) const;
+  bool  IsWaveEqual(CInstrumentN163 *pInstrument);
+  
+  bool  InsertNewWave(int Index);    // // //
+  bool  RemoveWave(int Index);    // // //
 
 protected:
-	virtual void	CloneFrom(const CInstrument *pInst);		// // //
+  virtual void  CloneFrom(const CInstrument *pInst);    // // //
 
 public:
-	static const int MAX_WAVE_SIZE = 240;		// Wave size (240 samples)		// // //
-	static const int MAX_WAVE_COUNT = 64;		// Number of waves
+  static const int MAX_WAVE_SIZE = 240;    // Wave size (240 samples)    // // //
+  static const int MAX_WAVE_COUNT = 64;    // Number of waves
 
 public:
-	static LPCTSTR SEQUENCE_NAME[];
-	LPCTSTR	GetSequenceName(int Index) const { return SEQUENCE_NAME[Index]; }		// // //
+  static LPCTSTR SEQUENCE_NAME[];
+  LPCTSTR  GetSequenceName(int Index) const { return SEQUENCE_NAME[Index]; }    // // //
 
 private:
-	int		m_iSamples[MAX_WAVE_COUNT][MAX_WAVE_SIZE];
-	int		m_iWaveSize;
-	int		m_iWavePos;
-	bool	m_bAutoWavePos;		// // // 050B
-	int		m_iWaveCount;
+  int    m_iSamples[MAX_WAVE_COUNT][MAX_WAVE_SIZE];
+  int    m_iWaveSize;
+  int    m_iWavePos;
+  bool  m_bAutoWavePos;    // // // 050B
+  int    m_iWaveCount;
 };

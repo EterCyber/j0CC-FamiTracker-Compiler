@@ -25,30 +25,30 @@
 #include "../RegisterState.h"
 
 CSoundChip::CSoundChip(CMixer *pMixer) :
-	m_pMixer(pMixer),
-	m_pRegisterLogger(new CRegisterLogger { })
+  m_pMixer(pMixer),
+  m_pRegisterLogger(new CRegisterLogger { })
 {
 }
 
 CSoundChip::~CSoundChip()
 {
-	if (m_pRegisterLogger)
-		delete m_pRegisterLogger;
+  if (m_pRegisterLogger)
+    delete m_pRegisterLogger;
 }
 
-double CSoundChip::GetFreq(int Channel) const		// // //
+double CSoundChip::GetFreq(int Channel) const    // // //
 {
-	return 0.0;
+  return 0.0;
 }
 
-void CSoundChip::Log(uint16_t Address, uint8_t Value)		// // //
+void CSoundChip::Log(uint16_t Address, uint8_t Value)    // // //
 {
-	// default logger operation
-	if (m_pRegisterLogger->SetPort(Address))
-		m_pRegisterLogger->Write(Value);
+  // default logger operation
+  if (m_pRegisterLogger->SetPort(Address))
+    m_pRegisterLogger->Write(Value);
 }
 
-CRegisterLogger *CSoundChip::GetRegisterLogger() const		// // //
+CRegisterLogger *CSoundChip::GetRegisterLogger() const    // // //
 {
-	return m_pRegisterLogger;
+  return m_pRegisterLogger;
 }

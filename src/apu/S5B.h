@@ -31,63 +31,63 @@
 class CS5BChannel : public CChannel
 {
 public:
-	friend class CS5B;
+  friend class CS5B;
 
-	CS5BChannel(CMixer *pMixer, uint8_t ID);
-	
-	void Process(uint32_t Time);
-	void Reset();
+  CS5BChannel(CMixer *pMixer, uint8_t ID);
+  
+  void Process(uint32_t Time);
+  void Reset();
 
-	uint32_t GetTime();
-	void Output(uint32_t Noise, uint32_t Envelope);
+  uint32_t GetTime();
+  void Output(uint32_t Noise, uint32_t Envelope);
 
-	double GetFrequency() const;
+  double GetFrequency() const;
 
 private:
-	uint8_t m_iVolume;
-	uint32_t m_iPeriod;
-	uint32_t m_iPeriodClock;
+  uint8_t m_iVolume;
+  uint32_t m_iPeriod;
+  uint32_t m_iPeriodClock;
 
-	bool m_bSquareHigh;
-	bool m_bSquareDisable;
-	bool m_bNoiseDisable;
+  bool m_bSquareHigh;
+  bool m_bSquareDisable;
+  bool m_bNoiseDisable;
 };
 
 class CS5B : public CSoundChip
 {
 public:
-	CS5B(CMixer *pMixer);
-	virtual ~CS5B();
-	
-	void	Reset();
-	void	Process(uint32_t Time);
-	void	EndFrame();
+  CS5B(CMixer *pMixer);
+  virtual ~CS5B();
+  
+  void  Reset();
+  void  Process(uint32_t Time);
+  void  EndFrame();
 
-	void	Write(uint16_t Address, uint8_t Value);
-	uint8_t	Read(uint16_t Address, bool &Mapped);
-	void	Log(uint16_t Address, uint8_t Value);		// // //
+  void  Write(uint16_t Address, uint8_t Value);
+  uint8_t  Read(uint16_t Address, bool &Mapped);
+  void  Log(uint16_t Address, uint8_t Value);    // // //
 
-	double	GetFreq(int Channel) const;		// // //
-
-private:
-	void	WriteReg(uint8_t Port, uint8_t Value);
-	void	RunEnvelope(uint32_t Time);
-	void	RunNoise(uint32_t Time);
+  double  GetFreq(int Channel) const;    // // //
 
 private:
-	CS5BChannel *m_pChannel[3];
+  void  WriteReg(uint8_t Port, uint8_t Value);
+  void  RunEnvelope(uint32_t Time);
+  void  RunNoise(uint32_t Time);
 
-	uint8_t m_cPort;
+private:
+  CS5BChannel *m_pChannel[3];
 
-	int m_iCounter;
+  uint8_t m_cPort;
 
-	uint32_t m_iNoisePeriod;
-	uint32_t m_iNoiseClock;
-	uint32_t m_iNoiseState;
+  int m_iCounter;
 
-	uint32_t m_iEnvelopePeriod;
-	uint32_t m_iEnvelopeClock;
-	char m_iEnvelopeLevel;
-	char m_iEnvelopeShape;
-	bool m_bEnvelopeHold;
+  uint32_t m_iNoisePeriod;
+  uint32_t m_iNoiseClock;
+  uint32_t m_iNoiseState;
+
+  uint32_t m_iEnvelopePeriod;
+  uint32_t m_iEnvelopeClock;
+  char m_iEnvelopeLevel;
+  char m_iEnvelopeShape;
+  bool m_bEnvelopeHold;
 };

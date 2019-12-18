@@ -23,29 +23,29 @@
 
 #pragma once
 
-#include <cstdint>		// // //
+#include <cstdint>    // // //
 
 class CMixer;
-class CRegisterLogger;		// // //
+class CRegisterLogger;    // // //
 
 class CSoundChip {
 public:
-	CSoundChip(CMixer *pMixer = nullptr);		// // //
-	virtual ~CSoundChip();
+  CSoundChip(CMixer *pMixer = nullptr);    // // //
+  virtual ~CSoundChip();
 
-	virtual void	Reset() = 0;
-	virtual void	Process(uint32_t Time) = 0;
-	virtual void	EndFrame() = 0;
+  virtual void  Reset() = 0;
+  virtual void  Process(uint32_t Time) = 0;
+  virtual void  EndFrame() = 0;
 
-	virtual void	Write(uint16_t Address, uint8_t Value) = 0;
-	virtual uint8_t	Read(uint16_t Address, bool &Mapped) = 0;
+  virtual void  Write(uint16_t Address, uint8_t Value) = 0;
+  virtual uint8_t  Read(uint16_t Address, bool &Mapped) = 0;
 
-	virtual double	GetFreq(int Channel) const;		// // //
+  virtual double  GetFreq(int Channel) const;    // // //
 
-	virtual void	Log(uint16_t Address, uint8_t Value);		// // //
-	CRegisterLogger *GetRegisterLogger() const;		// // //
+  virtual void  Log(uint16_t Address, uint8_t Value);    // // //
+  CRegisterLogger *GetRegisterLogger() const;    // // //
 
 protected:
-	CMixer *m_pMixer;
-	CRegisterLogger *m_pRegisterLogger;		// // //
+  CMixer *m_pMixer;
+  CRegisterLogger *m_pRegisterLogger;    // // //
 };

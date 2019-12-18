@@ -25,98 +25,98 @@
 
 CSequence::CSequence()
 {
-	Clear();
+  Clear();
 }
 
 void CSequence::Clear()
 {
-	m_iItemCount = 0;
-	m_iLoopPoint = -1;
-	m_iReleasePoint = -1;
-	m_iSetting = SETTING_DEFAULT;		// // //
+  m_iItemCount = 0;
+  m_iLoopPoint = -1;
+  m_iReleasePoint = -1;
+  m_iSetting = SETTING_DEFAULT;    // // //
 
-	memset(m_cValues, 0, sizeof(char) * MAX_SEQUENCE_ITEMS);
+  memset(m_cValues, 0, sizeof(char) * MAX_SEQUENCE_ITEMS);
 
-	m_iPlaying = -1;
+  m_iPlaying = -1;
 }
 
-bool CSequence::operator==(const CSequence &other)		// // //
+bool CSequence::operator==(const CSequence &other)    // // //
 {
-	return m_iItemCount == other.m_iItemCount &&
-		m_iLoopPoint == other.m_iLoopPoint &&
-		m_iReleasePoint == other.m_iReleasePoint &&
-		m_iSetting == other.m_iSetting &&
-		memcmp(m_cValues, other.m_cValues, m_iItemCount * sizeof(*m_cValues)) == 0;
+  return m_iItemCount == other.m_iItemCount &&
+    m_iLoopPoint == other.m_iLoopPoint &&
+    m_iReleasePoint == other.m_iReleasePoint &&
+    m_iSetting == other.m_iSetting &&
+    memcmp(m_cValues, other.m_cValues, m_iItemCount * sizeof(*m_cValues)) == 0;
 }
 
 void CSequence::SetItem(int Index, signed char Value)
 {
-	m_cValues[Index] = Value;
+  m_cValues[Index] = Value;
 }
 
 void CSequence::SetItemCount(unsigned int Count)
 {
-	ASSERT(Count <= MAX_SEQUENCE_ITEMS);
-	
-	m_iItemCount = Count;
+  ASSERT(Count <= MAX_SEQUENCE_ITEMS);
+  
+  m_iItemCount = Count;
 
-	if (m_iLoopPoint > m_iItemCount)
-		m_iLoopPoint = -1;
-	if (m_iReleasePoint > m_iItemCount)
-		m_iReleasePoint = -1;
+  if (m_iLoopPoint > m_iItemCount)
+    m_iLoopPoint = -1;
+  if (m_iReleasePoint > m_iItemCount)
+    m_iReleasePoint = -1;
 }
 
 void CSequence::SetLoopPoint(unsigned int Point)
 {
-	m_iLoopPoint = Point;
-	if (m_iLoopPoint > m_iItemCount)		// // //
-		m_iLoopPoint = -1;
+  m_iLoopPoint = Point;
+  if (m_iLoopPoint > m_iItemCount)    // // //
+    m_iLoopPoint = -1;
 }
 
 void CSequence::SetReleasePoint(unsigned int Point)
 {
-	m_iReleasePoint = Point;
-	if (m_iReleasePoint > m_iItemCount)		// // //
-		m_iReleasePoint = -1;
+  m_iReleasePoint = Point;
+  if (m_iReleasePoint > m_iItemCount)    // // //
+    m_iReleasePoint = -1;
 }
 
-void CSequence::SetSetting(seq_setting_t Setting)		// // //
+void CSequence::SetSetting(seq_setting_t Setting)    // // //
 {
-	m_iSetting = Setting;
+  m_iSetting = Setting;
 }
 
 signed char CSequence::GetItem(int Index) const
 {
-	return m_cValues[Index];
+  return m_cValues[Index];
 }
 
 unsigned int CSequence::GetItemCount() const
 {
-	return m_iItemCount;
+  return m_iItemCount;
 }
 
 unsigned int CSequence::GetLoopPoint() const
 {
-	return m_iLoopPoint;
+  return m_iLoopPoint;
 }
 
 unsigned int CSequence::GetReleasePoint() const
 {
-	return m_iReleasePoint;
+  return m_iReleasePoint;
 }
 
-unsigned int CSequence::GetSetting() const		// // //
+unsigned int CSequence::GetSetting() const    // // //
 {
-	return m_iSetting;
+  return m_iSetting;
 }
 
 void CSequence::Copy(const CSequence *pSeq)
 {
-	// Copy all values from pSeq
-	m_iItemCount = pSeq->m_iItemCount;
-	m_iLoopPoint = pSeq->m_iLoopPoint;
-	m_iReleasePoint = pSeq->m_iReleasePoint;
-	m_iSetting = pSeq->m_iSetting;
+  // Copy all values from pSeq
+  m_iItemCount = pSeq->m_iItemCount;
+  m_iLoopPoint = pSeq->m_iLoopPoint;
+  m_iReleasePoint = pSeq->m_iReleasePoint;
+  m_iSetting = pSeq->m_iSetting;
 
-	memcpy(m_cValues, pSeq->m_cValues, MAX_SEQUENCE_ITEMS);
+  memcpy(m_cValues, pSeq->m_cValues, MAX_SEQUENCE_ITEMS);
 }

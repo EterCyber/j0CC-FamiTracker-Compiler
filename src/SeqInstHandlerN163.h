@@ -27,39 +27,39 @@
 class CInstrumentN163;
 
 /*!
-	\brief Class for N163 sequence instrument handlers.
-	\details N163 instruments contain waveforms apart from sequence data.
+  \brief Class for N163 sequence instrument handlers.
+  \details N163 instruments contain waveforms apart from sequence data.
 */
 class CSeqInstHandlerN163 : public CSeqInstHandler
 {
 public:
-	/*!	\brief Constructor of the N163 sequence instrument handler.
-		\warning As of now, the actual loading of instrument waveforms takes place in the channel handler
-		rather than through its interface.
-		\param pInterface Pointer to the channel interface.
-		\param Vol Default volume for instruments used by this handler.
-		\param Duty Default duty cycle for instruments used by this handler. */
-	CSeqInstHandlerN163(CChannelHandlerInterface *pInterface, int Vol, int Duty);
-	/*!	\brief Loads a new instrument into the instrument handler.
-		\details This reimplementation sets up the wave size, wave position, and wave count of the channel
-		handler.
-		\param pInst Pointer to the instrument to be loaded. */
-	void LoadInstrument(std::shared_ptr<CInstrument> pInst) override;
-	/*!	\brief Starts a new note for the instrument handler.
-		\details This reimplementation may update the channel's wave buffer. */
-	void TriggerInstrument() override;
-	/*!	\brief Runs the instrument by one tick and updates the channel state.
-		\details This reimplementation may update the channel's wave buffer. */
-	void UpdateInstrument() override;
+  /*!  \brief Constructor of the N163 sequence instrument handler.
+    \warning As of now, the actual loading of instrument waveforms takes place in the channel handler
+    rather than through its interface.
+    \param pInterface Pointer to the channel interface.
+    \param Vol Default volume for instruments used by this handler.
+    \param Duty Default duty cycle for instruments used by this handler. */
+  CSeqInstHandlerN163(CChannelHandlerInterface *pInterface, int Vol, int Duty);
+  /*!  \brief Loads a new instrument into the instrument handler.
+    \details This reimplementation sets up the wave size, wave position, and wave count of the channel
+    handler.
+    \param pInst Pointer to the instrument to be loaded. */
+  void LoadInstrument(std::shared_ptr<CInstrument> pInst) override;
+  /*!  \brief Starts a new note for the instrument handler.
+    \details This reimplementation may update the channel's wave buffer. */
+  void TriggerInstrument() override;
+  /*!  \brief Runs the instrument by one tick and updates the channel state.
+    \details This reimplementation may update the channel's wave buffer. */
+  void UpdateInstrument() override;
 
-	/*!	\brief Requests the instrument handler to overwrite the wave buffer for the next tick. */
-	void RequestWaveUpdate();
-
-private:
-	void UpdateWave(const CInstrumentN163 *pInst);
+  /*!  \brief Requests the instrument handler to overwrite the wave buffer for the next tick. */
+  void RequestWaveUpdate();
 
 private:
-	char m_cBuffer[CInstrumentN163::MAX_WAVE_SIZE * 2];
-	char *m_pBufferCurrent, *m_pBufferPrevious;
-	bool m_bForceUpdate;
+  void UpdateWave(const CInstrumentN163 *pInst);
+
+private:
+  char m_cBuffer[CInstrumentN163::MAX_WAVE_SIZE * 2];
+  char *m_pBufferCurrent, *m_pBufferPrevious;
+  bool m_bForceUpdate;
 };

@@ -36,43 +36,43 @@ class CDPCM;
 class C2A03 : public CSoundChip
 {
 public:
-	C2A03(CMixer *pMixer);
-	virtual ~C2A03();
+  C2A03(CMixer *pMixer);
+  virtual ~C2A03();
 
-	void Reset();
-	void Process(uint32_t Time);
-	void EndFrame();
+  void Reset();
+  void Process(uint32_t Time);
+  void EndFrame();
 
-	void Write(uint16_t Address, uint8_t Value);
-	uint8_t Read(uint16_t Address, bool &Mapped);
+  void Write(uint16_t Address, uint8_t Value);
+  uint8_t Read(uint16_t Address, bool &Mapped);
 
-	double GetFreq(int Channel) const;		// // //
+  double GetFreq(int Channel) const;    // // //
 
 public:
-	void	ClockSequence();		// // //
-	
-	void	ChangeMachine(int Machine);
-	
-	CSampleMem *GetSampleMemory() const;		// // //
-	uint8_t	GetSamplePos() const;
-	uint8_t	GetDeltaCounter() const;
-	bool	DPCMPlaying() const;
+  void  ClockSequence();    // // //
+  
+  void  ChangeMachine(int Machine);
+  
+  CSampleMem *GetSampleMemory() const;    // // //
+  uint8_t  GetSamplePos() const;
+  uint8_t  GetDeltaCounter() const;
+  bool  DPCMPlaying() const;
 
 private:
-	inline void Clock_240Hz() const;		// // //
-	inline void Clock_120Hz() const;		// // //
-	inline void Clock_60Hz() const;		// // //
+  inline void Clock_240Hz() const;    // // //
+  inline void Clock_120Hz() const;    // // //
+  inline void Clock_60Hz() const;    // // //
 
-	inline void RunAPU1(uint32_t Time);
-	inline void RunAPU2(uint32_t Time);
+  inline void RunAPU1(uint32_t Time);
+  inline void RunAPU2(uint32_t Time);
 
 private:
-	CSquare		*m_pSquare1;
-	CSquare		*m_pSquare2;
-	CTriangle	*m_pTriangle;
-	CNoise		*m_pNoise;
-	CDPCM		*m_pDPCM;
-	
-	uint8_t		m_iFrameSequence;					// Frame sequence
-	uint8_t		m_iFrameMode;						// 4 or 5-steps frame sequence
+  CSquare    *m_pSquare1;
+  CSquare    *m_pSquare2;
+  CTriangle  *m_pTriangle;
+  CNoise    *m_pNoise;
+  CDPCM    *m_pDPCM;
+  
+  uint8_t    m_iFrameSequence;          // Frame sequence
+  uint8_t    m_iFrameMode;            // 4 or 5-steps frame sequence
 };

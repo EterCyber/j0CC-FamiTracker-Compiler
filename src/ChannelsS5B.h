@@ -28,52 +28,52 @@
 
 class CChannelHandlerS5B : public CChannelHandler, public CChannelHandlerInterfaceS5B {
 public:
-	CChannelHandlerS5B();
-	void	ResetChannel() override;
-	void	RefreshChannel() override;
+  CChannelHandlerS5B();
+  void  ResetChannel() override;
+  void  RefreshChannel() override;
 
-	void	SetNoiseFreq(int Pitch) override final;		// // //
+  void  SetNoiseFreq(int Pitch) override final;    // // //
 
-	int getDutyMax() const override;
+  int getDutyMax() const override;
 protected:
-	static const char MAX_DUTY;		// TODO remove class constant, move to .cpp file
+  static const char MAX_DUTY;    // TODO remove class constant, move to .cpp file
 
-	bool	HandleEffect(effect_t EffNum, unsigned char EffParam) override;		// // //
-	void	HandleNote(int Note, int Octave) override;		// // //
-	void	HandleEmptyNote() override;
-	void	HandleCut() override;
-	void	HandleRelease() override;
-	bool	CreateInstHandler(inst_type_t Type) override;		// // //
-	
-	int		CalculateVolume() const override;		// // //
-	int		ConvertDuty(int Duty) const override;		// // //
-	void	ClearRegisters() override;
-	CString	GetCustomEffectString() const override;		// // //
+  bool  HandleEffect(effect_t EffNum, unsigned char EffParam) override;    // // //
+  void  HandleNote(int Note, int Octave) override;    // // //
+  void  HandleEmptyNote() override;
+  void  HandleCut() override;
+  void  HandleRelease() override;
+  bool  CreateInstHandler(inst_type_t Type) override;    // // //
+  
+  int    CalculateVolume() const override;    // // //
+  int    ConvertDuty(int Duty) const override;    // // //
+  void  ClearRegisters() override;
+  CString  GetCustomEffectString() const override;    // // //
 
 protected:
-	void WriteReg(int Reg, int Value);
+  void WriteReg(int Reg, int Value);
 
-	// Static functions
-protected:	
-	static void SetMode(int Chan, int Square, int Noise);
-	void UpdateAutoEnvelope(int Period);		// // // 050B
-	void UpdateRegs();		// // //
+  // Static functions
+protected:  
+  static void SetMode(int Chan, int Square, int Noise);
+  void UpdateAutoEnvelope(int Period);    // // // 050B
+  void UpdateRegs();    // // //
 
-	// Static memebers
+  // Static memebers
 protected:
-	static int s_iModes;
-	static int s_iNoiseFreq;
-	static int s_iNoisePrev;		// // //
-	static int s_iDefaultNoise;		// // //
-	static unsigned char s_iEnvFreqHi;
-	static unsigned char s_iEnvFreqLo;
-	static bool s_bEnvTrigger;		// // // 050B
-	static int s_iEnvType;
-	static int s_unused;		// // // 050B, unused
+  static int s_iModes;
+  static int s_iNoiseFreq;
+  static int s_iNoisePrev;    // // //
+  static int s_iDefaultNoise;    // // //
+  static unsigned char s_iEnvFreqHi;
+  static unsigned char s_iEnvFreqLo;
+  static bool s_bEnvTrigger;    // // // 050B
+  static int s_iEnvType;
+  static int s_unused;    // // // 050B, unused
 
-	// Instance members
+  // Instance members
 protected:
-	bool m_bEnvelopeEnabled;		// // // 050B
-	int m_iAutoEnvelopeShift;		// // // 050B
-	bool m_bUpdate;
+  bool m_bEnvelopeEnabled;    // // // 050B
+  int m_iAutoEnvelopeShift;    // // // 050B
+  bool m_bUpdate;
 };

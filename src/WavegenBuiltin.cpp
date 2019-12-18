@@ -31,28 +31,28 @@
 const char *CWavegenImp::DEFAULT_ERROR = "Waveform generation failed.";
 
 CWavegenImp::CWavegenImp(const char *Name) :
-	m_bSuccess(false),
-	m_pName(Name),
-	m_pError(&DEFAULT_ERROR)
+  m_bSuccess(false),
+  m_pName(Name),
+  m_pError(&DEFAULT_ERROR)
 {
 }
 
 bool CWavegenImp::CreateWaves(float *const Dest, unsigned int Size, unsigned int Count)
 {
-	const char *err = CreateWavesInternal(Dest, Size, Count);
-	if (err != nullptr)
-		m_pError = &err;
-	return (m_bSuccess = err == nullptr);
+  const char *err = CreateWavesInternal(Dest, Size, Count);
+  if (err != nullptr)
+    m_pError = &err;
+  return (m_bSuccess = err == nullptr);
 }
 
 const char *CWavegenImp::GetGeneratorName() const
 {
-	return m_pName;
+  return m_pName;
 }
 
 const char *CWavegenImp::GetStatus() const
 {
-	return m_bSuccess ? nullptr : *m_pError;
+  return m_bSuccess ? nullptr : *m_pError;
 }
 
 //
@@ -62,22 +62,22 @@ const char *CWavegenImp::GetStatus() const
 const char *CWavegenSingle::COUNT_ERROR = "Wave count of this waveform generator must be 1.";
 
 CWavegenSingle::CWavegenSingle(const char *Name) :
-	CWavegenImp(Name)
+  CWavegenImp(Name)
 {
 }
 
 bool CWavegenSingle::CreateWaves(float *const Dest, unsigned int Size, unsigned int Index)
 {
-	if (Index != 1 && Index != -1) {
-		m_pError = &COUNT_ERROR;
-		return (m_bSuccess = false);
-	}
-	return CWavegenImp::CreateWaves(Dest, Size, Index);
+  if (Index != 1 && Index != -1) {
+    m_pError = &COUNT_ERROR;
+    return (m_bSuccess = false);
+  }
+  return CWavegenImp::CreateWaves(Dest, Size, Index);
 }
 
 unsigned int CWavegenSingle::GetCount() const
 {
-	return 1U;
+  return 1U;
 }
 
 //
@@ -85,22 +85,22 @@ unsigned int CWavegenSingle::GetCount() const
 //
 
 CWavegenSine::CWavegenSine() :
-	CWavegenSingle("Sine wave")
+  CWavegenSingle("Sine wave")
 {
 }
 
 const char *CWavegenSine::CreateWavesInternal(float *const Dest, unsigned int Size, unsigned int Index) const
 {
-	float *t = Dest;
-	for (unsigned int i = 0; i < Size; ++i)
-		*t++ = sinf(6.28318531f * i / Size);
+  float *t = Dest;
+  for (unsigned int i = 0; i < Size; ++i)
+    *t++ = sinf(6.28318531f * i / Size);
 
-	return nullptr;
+  return nullptr;
 }
 
 CWavegenParam *CWavegenSine::GetParameter(unsigned int Index) const
 {
-	return nullptr;
+  return nullptr;
 }
 
 //
@@ -108,22 +108,22 @@ CWavegenParam *CWavegenSine::GetParameter(unsigned int Index) const
 //
 
 CWavegenSawtooth::CWavegenSawtooth() :
-	CWavegenSingle("Triangle wave")
+  CWavegenSingle("Triangle wave")
 {
 }
 
 const char *CWavegenSawtooth::CreateWavesInternal(float *const Dest, unsigned int Size, unsigned int Index) const
 {
-	float *t = Dest;
-	for (unsigned int i = 0; i < Size; ++i)
-		*t++ = -1.f + 2.f * i / (Size - 1);
+  float *t = Dest;
+  for (unsigned int i = 0; i < Size; ++i)
+    *t++ = -1.f + 2.f * i / (Size - 1);
 
-	return nullptr;
+  return nullptr;
 }
 
 CWavegenParam *CWavegenSawtooth::GetParameter(unsigned int Index) const
 {
-	return nullptr;
+  return nullptr;
 }
 
 //
@@ -131,25 +131,25 @@ CWavegenParam *CWavegenSawtooth::GetParameter(unsigned int Index) const
 //
 
 CWavegenTriangle::CWavegenTriangle() :
-	CWavegenSingle("Triangle wave")
+  CWavegenSingle("Triangle wave")
 {
 }
 
 const char *CWavegenTriangle::CreateWavesInternal(float *const Dest, unsigned int Size, unsigned int Index) const
 {
-	float *t = Dest;
-	const unsigned int Half = Size >> 1;
-	for (unsigned int i = 0; i < Half; ++i)
-		*t++ = -1.f + 2.f * i / (Half - 1);
-	for (unsigned int i = 0; i < Size - Half; ++i)
-		*t++ = 1.f - 2.f * i / (Half - 1);
+  float *t = Dest;
+  const unsigned int Half = Size >> 1;
+  for (unsigned int i = 0; i < Half; ++i)
+    *t++ = -1.f + 2.f * i / (Half - 1);
+  for (unsigned int i = 0; i < Size - Half; ++i)
+    *t++ = 1.f - 2.f * i / (Half - 1);
 
-	return nullptr;
+  return nullptr;
 }
 
 CWavegenParam *CWavegenTriangle::GetParameter(unsigned int Index) const
 {
-	return nullptr;
+  return nullptr;
 }
 
 
@@ -160,34 +160,34 @@ CWavegenParam *CWavegenTriangle::GetParameter(unsigned int Index) const
 const char *CWavegenPulse::PULSE_WIDTH_ERROR = "Pulse width must be between 0 and 1.";
 
 CWavegenPulse::CWavegenPulse() :
-	CWavegenSingle("Pulse wave")
+  CWavegenSingle("Pulse wave")
 {
-	m_pPulseWidth = new CWavegenParamFloat("Pulse width");
+  m_pPulseWidth = new CWavegenParamFloat("Pulse width");
 }
 
 CWavegenPulse::~CWavegenPulse()
 {
-	if (m_pPulseWidth != nullptr)
-		delete m_pPulseWidth;
+  if (m_pPulseWidth != nullptr)
+    delete m_pPulseWidth;
 }
 
 const char *CWavegenPulse::CreateWavesInternal(float *const Dest, unsigned int Size, unsigned int Index) const
 {
-	float width = m_pPulseWidth->GetValue();
-	if (width > 1 || width < 0)
-		return PULSE_WIDTH_ERROR;
-	float *t = Dest;
-	const float thresh = Size - m_pPulseWidth->GetValue() * Size;
-	for (unsigned int i = 0; i < Size; ++i)
-		*t++ = i >= thresh ? 1.f : -1.f;
+  float width = m_pPulseWidth->GetValue();
+  if (width > 1 || width < 0)
+    return PULSE_WIDTH_ERROR;
+  float *t = Dest;
+  const float thresh = Size - m_pPulseWidth->GetValue() * Size;
+  for (unsigned int i = 0; i < Size; ++i)
+    *t++ = i >= thresh ? 1.f : -1.f;
 
-	return nullptr;
+  return nullptr;
 }
 
 CWavegenParam *CWavegenPulse::GetParameter(unsigned int Index) const
 {
-	switch (Index) {
-	case 0U: return m_pPulseWidth;
-	}
-	return nullptr;
+  switch (Index) {
+  case 0U: return m_pPulseWidth;
+  }
+  return nullptr;
 }

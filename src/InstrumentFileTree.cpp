@@ -29,124 +29,124 @@ CInstrumentFileTree::CInstrumentFileTree() : m_pRootMenu(NULL), m_iFileIndex(0),
 
 CInstrumentFileTree::~CInstrumentFileTree()
 {
-	DeleteMenuObjects();
+  DeleteMenuObjects();
 }
 
 void CInstrumentFileTree::DeleteMenuObjects()
 {
-	SAFE_RELEASE(m_pRootMenu);
+  SAFE_RELEASE(m_pRootMenu);
 
-	for (int i = 0; i < m_menuArray.GetCount(); ++i) {
-		SAFE_RELEASE(m_menuArray[i]);
-	}
+  for (int i = 0; i < m_menuArray.GetCount(); ++i) {
+    SAFE_RELEASE(m_menuArray[i]);
+  }
 
-	m_menuArray.RemoveAll();
-	m_iTotalMenusAdded = 0;
+  m_menuArray.RemoveAll();
+  m_iTotalMenusAdded = 0;
 
-	TRACE("Cleared instrument file tree\n");
+  TRACE("Cleared instrument file tree\n");
 }
 
 CString CInstrumentFileTree::GetFile(int Index) const
 {
-	ASSERT(Index >= MENU_BASE + 2);
-	return m_fileList[Index - MENU_BASE - 2];
+  ASSERT(Index >= MENU_BASE + 2);
+  return m_fileList[Index - MENU_BASE - 2];
 }
 
 void CInstrumentFileTree::Changed()
 {
-	m_bShouldRebuild = true;
+  m_bShouldRebuild = true;
 }
 
 bool CInstrumentFileTree::ShouldRebuild() const
 {
-	// Check if tree expired, to allow changes in the file system to be visible
-	return (GetTickCount() > m_iTimeout) || m_bShouldRebuild;
+  // Check if tree expired, to allow changes in the file system to be visible
+  return (GetTickCount() > m_iTimeout) || m_bShouldRebuild;
 }
 
 bool CInstrumentFileTree::BuildMenuTree(CString instrumentPath)
 {
-	CWaitCursor wait;
+  CWaitCursor wait;
 
-	DeleteMenuObjects();
-	m_fileList.RemoveAll();
+  DeleteMenuObjects();
+  m_fileList.RemoveAll();
 
-	TRACE("Building instrument file tree...\n");
+  TRACE("Building instrument file tree...\n");
 
-	m_pRootMenu = new CMenu();
+  m_pRootMenu = new CMenu();
 
-	m_pRootMenu->CreatePopupMenu();
-	m_pRootMenu->AppendMenu(MF_STRING, MENU_BASE + 0, _T("Open file..."));
-	m_pRootMenu->AppendMenu(MF_STRING, MENU_BASE + 1, _T("Select directory..."));
-	m_pRootMenu->AppendMenu(MF_SEPARATOR);
-	m_pRootMenu->SetDefaultItem(0, TRUE);
+  m_pRootMenu->CreatePopupMenu();
+  m_pRootMenu->AppendMenu(MF_STRING, MENU_BASE + 0, _T("Open file..."));
+  m_pRootMenu->AppendMenu(MF_STRING, MENU_BASE + 1, _T("Select directory..."));
+  m_pRootMenu->AppendMenu(MF_SEPARATOR);
+  m_pRootMenu->SetDefaultItem(0, TRUE);
 
-	if (instrumentPath.GetLength() == 0) {
-		m_bShouldRebuild = true;
-		m_pRootMenu->AppendMenu(MF_STRING | MF_DISABLED, MENU_BASE + 2, _T("(select a directory)"));
-	}
-	else {
-		m_iFileIndex = 2;
+  if (instrumentPath.GetLength() == 0) {
+    m_bShouldRebuild = true;
+    m_pRootMenu->AppendMenu(MF_STRING | MF_DISABLED, MENU_BASE + 2, _T("(select a directory)"));
+  }
+  else {
+    m_iFileIndex = 2;
 
-		if (!ScanDirectory(instrumentPath, m_pRootMenu, 0)) {
-			// No files found
-			m_pRootMenu->AppendMenu(MF_STRING | MF_DISABLED, MENU_BASE + 2, _T("(no files found)"));
-			m_bShouldRebuild = true;
-		}
-		else {
-			m_fileList.FreeExtra();
-			m_menuArray.FreeExtra();
+    if (!ScanDirectory(instrumentPath, m_pRootMenu, 0)) {
+      // No files found
+      m_pRootMenu->AppendMenu(MF_STRING | MF_DISABLED, MENU_BASE + 2, _T("(no files found)"));
+      m_bShouldRebuild = true;
+    }
+    else {
+      m_fileList.FreeExtra();
+      m_menuArray.FreeExtra();
 
-			m_iTimeout = GetTickCount() + CACHE_TIMEOUT;
-			m_bShouldRebuild = false;
-		}
-	}
+      m_iTimeout = GetTickCount() + CACHE_TIMEOUT;
+      m_bShouldRebuild = false;
+    }
+  }
 
-	TRACE("Done\n");
+  TRACE("Done\n");
 
-	return true;
+  return true;
 }
 
 bool CInstrumentFileTree::ScanDirectory(CString path, CMenu *pMenu, int level)
 {
-	CFileFind fileFinder;
-	bool bNoFile = true;
+  CFileFind fileFinder;
+  bool bNoFile = true;
 
-	if (level > RECURSION_LIMIT)
-		return false;
+  if (level > RECURSION_LIMIT)
+    return false;
 
-	BOOL working = fileFinder.FindFile(path + _T("\\*.*"));
+  BOOL working = fileFinder.FindFile(path + _T("\\*.*"));
 
-	// First scan directories
-	while (working) {
-		working = fileFinder.FindNextFile();
+  // First scan directories
+  while (working) {
+    working = fileFinder.FindNextFile();
 
-		if (fileFinder.IsDirectory() && !fileFinder.IsHidden() && !fileFinder.IsDots() && m_iTotalMenusAdded++ < MAX_MENUS) {
-			CMenu *pSubMenu = new CMenu();
-			m_menuArray.Add(pSubMenu);
-			pSubMenu->CreatePopupMenu();
-			// Recursive scan
-			bool bDisabled = false;
-			if (!ScanDirectory(path + _T("\\") + fileFinder.GetFileName(), pSubMenu, level + 1))
-				bDisabled = true;
-			pMenu->AppendMenu(MF_STRING | MF_POPUP | (bDisabled ? MF_DISABLED : MF_ENABLED), (UINT)pSubMenu->m_hMenu, fileFinder.GetFileName());		
-			bNoFile = false;
-		}
-	}
+    if (fileFinder.IsDirectory() && !fileFinder.IsHidden() && !fileFinder.IsDots() && m_iTotalMenusAdded++ < MAX_MENUS) {
+      CMenu *pSubMenu = new CMenu();
+      m_menuArray.Add(pSubMenu);
+      pSubMenu->CreatePopupMenu();
+      // Recursive scan
+      bool bDisabled = false;
+      if (!ScanDirectory(path + _T("\\") + fileFinder.GetFileName(), pSubMenu, level + 1))
+        bDisabled = true;
+      pMenu->AppendMenu(MF_STRING | MF_POPUP | (bDisabled ? MF_DISABLED : MF_ENABLED), (UINT)pSubMenu->m_hMenu, fileFinder.GetFileName());    
+      bNoFile = false;
+    }
+  }
 
-	working = fileFinder.FindFile(path + _T("\\*.fti"));
+  working = fileFinder.FindFile(path + _T("\\*.fti"));
 
-	// Then files
-	while (working) {
-		working = fileFinder.FindNextFile();
-		pMenu->AppendMenu(MF_STRING | MF_ENABLED, MENU_BASE + m_iFileIndex++, fileFinder.GetFileTitle());
-		m_fileList.Add(path + _T("\\") + fileFinder.GetFileName());
-		bNoFile = false;
-	}
+  // Then files
+  while (working) {
+    working = fileFinder.FindNextFile();
+    pMenu->AppendMenu(MF_STRING | MF_ENABLED, MENU_BASE + m_iFileIndex++, fileFinder.GetFileTitle());
+    m_fileList.Add(path + _T("\\") + fileFinder.GetFileName());
+    bNoFile = false;
+  }
 
-	return !bNoFile;
+  return !bNoFile;
 }
 
 CMenu *CInstrumentFileTree::GetMenu() const
 {
-	return m_pRootMenu;
+  return m_pRootMenu;
 }

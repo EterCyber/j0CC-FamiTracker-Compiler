@@ -36,57 +36,57 @@ class CFTMComponentInterface;
 enum inst_type_t;
 
 /*!
-	\brief A container of FamiTracker instruments.
-	\details This class implements common facilities for manipulating a fixed-length array of
-	instrument objects. 
+  \brief A container of FamiTracker instruments.
+  \details This class implements common facilities for manipulating a fixed-length array of
+  instrument objects. 
 */
 class CInstrumentManager : public CInstrumentManagerInterface
 {
 public:
-	CInstrumentManager(CFTMComponentInterface *pInterface = nullptr);
-	~CInstrumentManager();
+  CInstrumentManager(CFTMComponentInterface *pInterface = nullptr);
+  ~CInstrumentManager();
 
-	void ClearAll();
+  void ClearAll();
 
-	std::shared_ptr<CInstrument> GetInstrument(unsigned int Index) const;
-	bool InsertInstrument(unsigned int Index, CInstrument *pInst);
-	bool InsertInstrument(unsigned int Index, std::shared_ptr<CInstrument> pInst);
-	bool RemoveInstrument(unsigned int Index);
-	
-	bool IsInstrumentUsed(unsigned int Index) const;
-	unsigned int GetInstrumentCount() const;
-	unsigned int GetFirstUnused() const;
-	int GetFreeSequenceIndex(inst_type_t InstType, int Type, CSeqInstrument *pInst = nullptr) const;
+  std::shared_ptr<CInstrument> GetInstrument(unsigned int Index) const;
+  bool InsertInstrument(unsigned int Index, CInstrument *pInst);
+  bool InsertInstrument(unsigned int Index, std::shared_ptr<CInstrument> pInst);
+  bool RemoveInstrument(unsigned int Index);
+  
+  bool IsInstrumentUsed(unsigned int Index) const;
+  unsigned int GetInstrumentCount() const;
+  unsigned int GetFirstUnused() const;
+  int GetFreeSequenceIndex(inst_type_t InstType, int Type, CSeqInstrument *pInst = nullptr) const;
 
-	inst_type_t GetInstrumentType(unsigned int Index) const;
-	
-	void CloneInstrumentShallow(unsigned int Old, unsigned int New);
-	void CloneInstrumentDeep(unsigned int Old, unsigned int New);
+  inst_type_t GetInstrumentType(unsigned int Index) const;
+  
+  void CloneInstrumentShallow(unsigned int Old, unsigned int New);
+  void CloneInstrumentDeep(unsigned int Old, unsigned int New);
 
-	CSequenceManager *const GetSequenceManager(int InstType) const;
-	CDSampleManager *const GetDSampleManager() const;
+  CSequenceManager *const GetSequenceManager(int InstType) const;
+  CDSampleManager *const GetDSampleManager() const;
 
-	// from interface
-	CSequence *GetSequence(int InstType, int SeqType, int Index) const; // TODO: use SetSequence and provide const getter
-	void SetSequence(int InstType, int SeqType, int Index, CSequence *pSeq);
-	int AddSequence(int InstType, int SeqType, CSequence *pSeq, CSeqInstrument *pInst = nullptr);
-	const CDSample *GetDSample(int Index) const;
-	void SetDSample(int Index, CDSample *pSamp);
-	int AddDSample(CDSample *pSamp);
-	void InstrumentChanged() const;
+  // from interface
+  CSequence *GetSequence(int InstType, int SeqType, int Index) const; // TODO: use SetSequence and provide const getter
+  void SetSequence(int InstType, int SeqType, int Index, CSequence *pSeq);
+  int AddSequence(int InstType, int SeqType, CSequence *pSeq, CSeqInstrument *pInst = nullptr);
+  const CDSample *GetDSample(int Index) const;
+  void SetDSample(int Index, CDSample *pSamp);
+  int AddDSample(CDSample *pSamp);
+  void InstrumentChanged() const;
 
 public:
-	static std::shared_ptr<CInstrument> CreateNew(inst_type_t InstType);
-	static const int MAX_INSTRUMENTS;
+  static std::shared_ptr<CInstrument> CreateNew(inst_type_t InstType);
+  static const int MAX_INSTRUMENTS;
 
 private:
-	std::vector<std::shared_ptr<CInstrument>> m_pInstruments;
-	std::vector<std::unique_ptr<CSequenceManager>> m_pSequenceManager;
-	std::unique_ptr<CDSampleManager> m_pDSampleManager;
+  std::vector<std::shared_ptr<CInstrument>> m_pInstruments;
+  std::vector<std::unique_ptr<CSequenceManager>> m_pSequenceManager;
+  std::unique_ptr<CDSampleManager> m_pDSampleManager;
 
-	mutable CCriticalSection m_InstrumentLock;
-	CFTMComponentInterface *m_pDocInterface;
+  mutable CCriticalSection m_InstrumentLock;
+  CFTMComponentInterface *m_pDocInterface;
 
 private:
-	static const int SEQ_MANAGER_COUNT;
+  static const int SEQ_MANAGER_COUNT;
 };

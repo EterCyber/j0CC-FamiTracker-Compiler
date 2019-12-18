@@ -27,16 +27,16 @@
 class CGroove
 {
 public:
-	CGroove(int Speed = 0);
+  CGroove(int Speed = 0);
 
-	void Copy(const CGroove *Source);
-	void Clear(unsigned char Speed);
-	unsigned char GetEntry(int Index) const;
-	void SetEntry(unsigned char Index, unsigned char Value);
-	unsigned char GetSize() const;
-	void SetSize(unsigned char Size);
-	float GetAverage() const;
+  void Copy(const CGroove *Source);
+  void Clear(unsigned char Speed);
+  unsigned char GetEntry(int Index) const;
+  void SetEntry(unsigned char Index, unsigned char Value);
+  unsigned char GetSize() const;
+  void SetSize(unsigned char Size);
+  float GetAverage() const;
 private:
-	unsigned char m_iLength;
-	unsigned char m_iEntry[MAX_GROOVE_SIZE];
+  unsigned char m_iLength;
+  unsigned char m_iEntry[MAX_GROOVE_SIZE];
 };

@@ -28,28 +28,28 @@
 
 class CChannelHandlerMMC5 : public CChannelHandler {
 public:
-	CChannelHandlerMMC5();
-	void	ResetChannel() override;
-	void	RefreshChannel() override;
-	int getDutyMax() const override;
+  CChannelHandlerMMC5();
+  void  ResetChannel() override;
+  void  RefreshChannel() override;
+  int getDutyMax() const override;
 protected:
-	static const char MAX_DUTY;
+  static const char MAX_DUTY;
 
-	void	HandleNoteData(stChanNote *pNoteData, int EffColumns) override;
-	bool	HandleEffect(effect_t EffNum, unsigned char EffParam) override;		// // //
-	void	HandleEmptyNote() override;
-	void	HandleCut() override;
-	void	HandleRelease() override;
-	bool	CreateInstHandler(inst_type_t Type) override;		// // //
-	int		ConvertDuty(int Duty) const override;		// // //
-	void	ClearRegisters() override;
-	CString	GetCustomEffectString() const override;		// // //
+  void  HandleNoteData(stChanNote *pNoteData, int EffColumns) override;
+  bool  HandleEffect(effect_t EffNum, unsigned char EffParam) override;    // // //
+  void  HandleEmptyNote() override;
+  void  HandleCut() override;
+  void  HandleRelease() override;
+  bool  CreateInstHandler(inst_type_t Type) override;    // // //
+  int    ConvertDuty(int Duty) const override;    // // //
+  void  ClearRegisters() override;
+  CString  GetCustomEffectString() const override;    // // //
 
 protected:
-	// // //
-	bool m_bHardwareEnvelope;	// // // (constant volume flag, bit 4)
-	bool m_bEnvelopeLoop;		// // // (halt length counter flag, bit 5 / triangle bit 7)
-	bool m_bResetEnvelope;		// // //
-	int  m_iLengthCounter;		// // //
-	int	 m_iLastPeriod;			// // // moved to subclass
+  // // //
+  bool m_bHardwareEnvelope;  // // // (constant volume flag, bit 4)
+  bool m_bEnvelopeLoop;    // // // (halt length counter flag, bit 5 / triangle bit 7)
+  bool m_bResetEnvelope;    // // //
+  int  m_iLengthCounter;    // // //
+  int   m_iLastPeriod;      // // // moved to subclass
 };

@@ -20,43 +20,43 @@
 
 #pragma once
 
-#include <memory>		// // //
+#include <memory>    // // //
 
 // DPCM sample class
 
 class CDSample {
 public:
-	// Constructor
-	CDSample(unsigned int Size = 0U);		// // //
+  // Constructor
+  CDSample(unsigned int Size = 0U);    // // //
 
-	// Copy constructor
-	CDSample(const CDSample &sample);
-	CDSample &operator=(const CDSample &sample);
+  // Copy constructor
+  CDSample(const CDSample &sample);
+  CDSample &operator=(const CDSample &sample);
 
-	// Set sample data and size, the object will own the memory area assigned
-	void SetData(unsigned int Size, char *pData);
+  // Set sample data and size, the object will own the memory area assigned
+  void SetData(unsigned int Size, char *pData);
 
-	// Get sample size
-	unsigned int GetSize() const;
+  // Get sample size
+  unsigned int GetSize() const;
 
-	// Get sample data
-	char *GetData() const;
+  // Get sample data
+  char *GetData() const;
 
-	// Set sample name
-	void SetName(const char *pName);
+  // Set sample name
+  void SetName(const char *pName);
 
-	// Get sample name
-	const char *GetName() const;
+  // Get sample name
+  const char *GetName() const;
 
 public:
-	// Max size of a sample as supported by the NES, in bytes
-	static const int MAX_SIZE = 0x0FF1;
-	// Size of sample name
-	static const int MAX_NAME_SIZE = 256;
+  // Max size of a sample as supported by the NES, in bytes
+  static const int MAX_SIZE = 0x0FF1;
+  // Size of sample name
+  static const int MAX_NAME_SIZE = 256;
 
 private:
-	// Sample data
-	unsigned int m_iSampleSize;
-	std::unique_ptr<char[]> m_pSampleData;		// // //
-	std::unique_ptr<char[]> m_pName;		// // //
+  // Sample data
+  unsigned int m_iSampleSize;
+  std::unique_ptr<char[]> m_pSampleData;    // // //
+  std::unique_ptr<char[]> m_pName;    // // //
 };

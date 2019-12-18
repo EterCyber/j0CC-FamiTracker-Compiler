@@ -25,71 +25,71 @@
 // // // File load / store
 
 CSimpleFile::CSimpleFile(LPCTSTR lpszFileName, UINT nOpenFlags) :
-	CFile(lpszFileName, nOpenFlags)
+  CFile(lpszFileName, nOpenFlags)
 {
 }
 
 void CSimpleFile::WriteChar(char Value)
 {
-	Write(&Value, sizeof(char));
+  Write(&Value, sizeof(char));
 }
 
 void CSimpleFile::WriteShort(short Value)
 {
-	Write(&Value, sizeof(short));
+  Write(&Value, sizeof(short));
 }
 
 void CSimpleFile::WriteInt(int Value)
 {
-	Write(&Value, sizeof(int));
+  Write(&Value, sizeof(int));
 }
 
 void CSimpleFile::WriteString(CString Str)
 {
-	int Len = Str.GetLength();
-	WriteInt(Len);
-	Write(CT2CA(Str).m_psz, Len);
+  int Len = Str.GetLength();
+  WriteInt(Len);
+  Write(CT2CA(Str).m_psz, Len);
 }
 
 void CSimpleFile::WriteStringNull(CString Str)
 {
-	CT2CA s(Str);
-	Write(s, strlen(s.m_psz) + 1);
+  CT2CA s(Str);
+  Write(s, strlen(s.m_psz) + 1);
 }
 
 char CSimpleFile::ReadChar()
 {
-	char Value;
-	Read(&Value, sizeof(char));
-	return Value;
+  char Value;
+  Read(&Value, sizeof(char));
+  return Value;
 }
 
 short CSimpleFile::ReadShort()
 {
-	short Value;
-	Read(&Value, sizeof(short));
-	return Value;
+  short Value;
+  Read(&Value, sizeof(short));
+  return Value;
 }
 
 int CSimpleFile::ReadInt()
 {
-	int Value;
-	Read(&Value, sizeof(int));
-	return Value;
+  int Value;
+  Read(&Value, sizeof(int));
+  return Value;
 }
 
 CString CSimpleFile::ReadString()
 {
-	const int Size = ReadInt();
-	LPSTR Buf = new char[Size + 1];
-	Buf[Size] = '\0';
-	return CString(CA2CT(Buf));
+  const int Size = ReadInt();
+  LPSTR Buf = new char[Size + 1];
+  Buf[Size] = '\0';
+  return CString(CA2CT(Buf));
 }
 
 CString CSimpleFile::ReadStringNull()
 {
-	CStringA str;
-	while (char ch = ReadChar())
-		str += ch;
-	return CString(CA2CT(str));
+  CStringA str;
+  while (char ch = ReadChar())
+    str += ch;
+  return CString(CA2CT(str));
 }

@@ -30,11 +30,11 @@ class CBookmarkManager;
 class CFTMComponentInterface
 {
 public:
-	virtual CSequenceManager *const GetSequenceManager(int InstType) const = 0;
-	virtual CInstrumentManager *const GetInstrumentManager() const = 0;
-	virtual CDSampleManager *const GetDSampleManager() const = 0;
-	virtual CBookmarkManager *const GetBookmarkManager() const = 0;
+  virtual CSequenceManager *const GetSequenceManager(int InstType) const = 0;
+  virtual CInstrumentManager *const GetInstrumentManager() const = 0;
+  virtual CDSampleManager *const GetDSampleManager() const = 0;
+  virtual CBookmarkManager *const GetBookmarkManager() const = 0;
 
-	virtual void Modify(bool Change) = 0;
-	virtual void ModifyIrreversible() = 0;
+  virtual void Modify(bool Change) = 0;
+  virtual void ModifyIrreversible() = 0;
 };

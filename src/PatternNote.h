@@ -28,17 +28,17 @@
 // Channel note struct, holds the data for each row in patterns
 class stChanNote {
 public:
-	CString ToString() const;
+  CString ToString() const;
 
 public:
-	unsigned char Note = NONE;
-	unsigned char Octave = 0U;
-	unsigned char Vol = MAX_VOLUME;
-	unsigned char Instrument = MAX_INSTRUMENTS;
-	effect_t      EffNumber[MAX_EFFECT_COLUMNS] = {EF_NONE, EF_NONE, EF_NONE, EF_NONE};		// // //
-	unsigned char EffParam[MAX_EFFECT_COLUMNS] = {0U, 0U, 0U, 0U};
+  unsigned char Note = NONE;
+  unsigned char Octave = 0U;
+  unsigned char Vol = MAX_VOLUME;
+  unsigned char Instrument = MAX_INSTRUMENTS;
+  effect_t      EffNumber[MAX_EFFECT_COLUMNS] = {EF_NONE, EF_NONE, EF_NONE, EF_NONE};    // // //
+  unsigned char EffParam[MAX_EFFECT_COLUMNS] = {0U, 0U, 0U, 0U};
 
 public:
-	static const CString NOTE_NAME[NOTE_RANGE];
-	static const CString NOTE_NAME_FLAT[NOTE_RANGE];
+  static const CString NOTE_NAME[NOTE_RANGE];
+  static const CString NOTE_NAME_FLAT[NOTE_RANGE];
 };

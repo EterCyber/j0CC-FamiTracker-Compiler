@@ -25,182 +25,182 @@
 
 // CSettings command target
 
-enum EDIT_STYLES {		// // // renamed
-	EDIT_STYLE_FT2 = 0,		// FT2
-	EDIT_STYLE_MPT = 1,		// ModPlug
-	EDIT_STYLE_IT = 2,		// IT
+enum EDIT_STYLES {    // // // renamed
+  EDIT_STYLE_FT2 = 0,    // FT2
+  EDIT_STYLE_MPT = 1,    // ModPlug
+  EDIT_STYLE_IT = 2,    // IT
 };
 
-enum module_error_level_t {		// // //
-	MODULE_ERROR_NONE,		/*!< No error checking at all (warning) */
-	MODULE_ERROR_DEFAULT,	/*!< Usual error checking */
-	MODULE_ERROR_OFFICIAL,	/*!< Special bounds checking according to the official build */
-	MODULE_ERROR_STRICT,	/*!< Extra validation for some values */
+enum module_error_level_t {    // // //
+  MODULE_ERROR_NONE,    /*!< No error checking at all (warning) */
+  MODULE_ERROR_DEFAULT,  /*!< Usual error checking */
+  MODULE_ERROR_OFFICIAL,  /*!< Special bounds checking according to the official build */
+  MODULE_ERROR_STRICT,  /*!< Extra validation for some values */
 };
 
 enum WIN_STATES {
-	STATE_NORMAL,
-	STATE_MAXIMIZED
+  STATE_NORMAL,
+  STATE_MAXIMIZED
 };
 
 // // // helper class for loading settings from official famitracker
 struct stOldSettingContext
 {
-	stOldSettingContext();
-	~stOldSettingContext();
+  stOldSettingContext();
+  ~stOldSettingContext();
 };
 
 // Base class for settings, pure virtual
 class CSettingBase {
 public:
-	CSettingBase(LPCTSTR pSection, LPCTSTR pEntry) : m_pSection(pSection), m_pEntry(pEntry) {};
-	virtual ~CSettingBase() {}
-	virtual void Default() = 0;
-	virtual void UpdateDefault(LPCTSTR pSection, LPCTSTR pEntry);		// // /
-	LPCTSTR GetSection() const { return m_pSection; };
+  CSettingBase(LPCTSTR pSection, LPCTSTR pEntry) : m_pSection(pSection), m_pEntry(pEntry) {};
+  virtual ~CSettingBase() {}
+  virtual void Default() = 0;
+  virtual void UpdateDefault(LPCTSTR pSection, LPCTSTR pEntry);    // // /
+  LPCTSTR GetSection() const { return m_pSection; };
 protected:
-	LPCTSTR m_pSection;
-	LPCTSTR m_pEntry;
-	LPCTSTR m_pSectionSecond = nullptr;		// // //
-	LPCTSTR m_pEntrySecond = nullptr;		// // //
+  LPCTSTR m_pSection;
+  LPCTSTR m_pEntry;
+  LPCTSTR m_pSectionSecond = nullptr;    // // //
+  LPCTSTR m_pEntrySecond = nullptr;    // // //
 };
 
 // Templated setting class
 template <class T>
 class CSettingType : public CSettingBase {
 public:
-	CSettingType(LPCTSTR pSection, LPCTSTR pEntry, T defaultVal, T *pVar) : CSettingBase(pSection, pEntry), m_tDefaultValue(defaultVal), m_pVariable(pVar) {};
-	virtual void Default();
+  CSettingType(LPCTSTR pSection, LPCTSTR pEntry, T defaultVal, T *pVar) : CSettingBase(pSection, pEntry), m_tDefaultValue(defaultVal), m_pVariable(pVar) {};
+  virtual void Default();
 protected:
-	T *m_pVariable;
-	T m_tDefaultValue;
+  T *m_pVariable;
+  T m_tDefaultValue;
 };
 
 // Settings collection
 class CSettings : public CObject
 {
 private:
-	CSettings();
+  CSettings();
 
 public:
-	virtual ~CSettings();
+  virtual ~CSettings();
 
-	void	DefaultSettings();
-
-public:
-	static CSettings *GetObject();
+  void  DefaultSettings();
 
 public:
-	// Local cache of all settings (all public)
+  static CSettings *GetObject();
 
-	struct {
-		bool	bWrapCursor;
-		bool	bWrapFrames;
-		bool	bFreeCursorEdit;
-		bool	bWavePreview;
-		bool	bKeyRepeat;
-		bool	bRowInHex;
-		bool	bFramePreview;
-		int		iEditStyle;
-		bool	bNoDPCMReset;
-		bool	bNoStepMove;
-		int		iPageStepSize;
-		bool	bPullUpDelete;
-		bool	bBackups;
-		bool	bSingleInstance;
-		bool	bPreviewFullRow;
-		bool	bDblClickSelect;
-		bool	bWrapPatternValue;		// // //
-		bool	bCutVolume;
-		bool	bFDSOldVolume;
-		bool	bOverflowPaste;
-		bool	bShowSkippedRows;
-		bool	bHexKeypad;
-		bool	bMultiFrameSel;
-	} General;
+public:
+  // Local cache of all settings (all public)
 
-	struct {
-		int		iErrorLevel;
-	} Version;		// // //
+  struct {
+    bool  bWrapCursor;
+    bool  bWrapFrames;
+    bool  bFreeCursorEdit;
+    bool  bWavePreview;
+    bool  bKeyRepeat;
+    bool  bRowInHex;
+    bool  bFramePreview;
+    int    iEditStyle;
+    bool  bNoDPCMReset;
+    bool  bNoStepMove;
+    int    iPageStepSize;
+    bool  bPullUpDelete;
+    bool  bBackups;
+    bool  bSingleInstance;
+    bool  bPreviewFullRow;
+    bool  bDblClickSelect;
+    bool  bWrapPatternValue;    // // //
+    bool  bCutVolume;
+    bool  bFDSOldVolume;
+    bool  bOverflowPaste;
+    bool  bShowSkippedRows;
+    bool  bHexKeypad;
+    bool  bMultiFrameSel;
+  } General;
 
-	struct {
-		int		iDevice;
-		int		iSampleRate;
-		int		iSampleSize;
-		int		iBufferLength;
-		int		iBassFilter;
-		int		iTrebleFilter;
-		int		iTrebleDamping;
-		int		iMixVolume;
-	} Sound;
+  struct {
+    int    iErrorLevel;
+  } Version;    // // //
 
-	struct {
-		int		iMidiDevice;
-		int		iMidiOutDevice;
-		bool	bMidiMasterSync;
-		bool	bMidiKeyRelease;
-		bool	bMidiChannelMap;
-		bool	bMidiVelocity;
-		bool	bMidiArpeggio;
-	} Midi;
+  struct {
+    int    iDevice;
+    int    iSampleRate;
+    int    iSampleSize;
+    int    iBufferLength;
+    int    iBassFilter;
+    int    iTrebleFilter;
+    int    iTrebleDamping;
+    int    iMixVolume;
+  } Sound;
 
-	struct {
-		int		iColBackground;
-		int		iColBackgroundHilite;
-		int		iColBackgroundHilite2;
-		int		iColPatternText;
-		int		iColPatternTextHilite;
-		int		iColPatternTextHilite2;
-		int		iColPatternInstrument;
-		int		iColPatternVolume;
-		int		iColPatternEffect;
-		int		iColSelection;
-		int		iColCursor;
-		int		iColCurrentRowNormal;		// // //
-		int		iColCurrentRowEdit;
-		int		iColCurrentRowPlaying;
+  struct {
+    int    iMidiDevice;
+    int    iMidiOutDevice;
+    bool  bMidiMasterSync;
+    bool  bMidiKeyRelease;
+    bool  bMidiChannelMap;
+    bool  bMidiVelocity;
+    bool  bMidiArpeggio;
+  } Midi;
 
-		CString	strFont;		// // //
-		CString	strFrameFont;		// // // 050B
-		int		rowHeight;
-		int		fontPercent;	// Font height (pixels), as a percentage of row height
+  struct {
+    int    iColBackground;
+    int    iColBackgroundHilite;
+    int    iColBackgroundHilite2;
+    int    iColPatternText;
+    int    iColPatternTextHilite;
+    int    iColPatternTextHilite2;
+    int    iColPatternInstrument;
+    int    iColPatternVolume;
+    int    iColPatternEffect;
+    int    iColSelection;
+    int    iColCursor;
+    int    iColCurrentRowNormal;    // // //
+    int    iColCurrentRowEdit;
+    int    iColCurrentRowPlaying;
 
-		bool	bPatternColor;
-		bool	bDisplayFlats;
-	} Appearance;
+    CString  strFont;    // // //
+    CString  strFrameFont;    // // // 050B
+    int    rowHeight;
+    int    fontPercent;  // Font height (pixels), as a percentage of row height
 
-	struct {
-		int		iKeyNoteCut;
-		int		iKeyNoteRelease;
-		int		iKeyClear;
-		int		iKeyRepeat;
-		int		iKeyEchoBuffer;		// // //
-	} Keys;
+    bool  bPatternColor;
+    bool  bDisplayFlats;
+  } Appearance;
 
-	struct {
-		int		iLevelAPU1;
-		int		iLevelAPU2;
-		int		iLevelVRC6;
-		int		iLevelVRC7;
-		int		iLevelMMC5;
-		int		iLevelFDS;
-		int		iLevelN163;
-		int		iLevelS5B;
-	} ChipLevels;
+  struct {
+    int    iKeyNoteCut;
+    int    iKeyNoteRelease;
+    int    iKeyClear;
+    int    iKeyRepeat;
+    int    iKeyEchoBuffer;    // // //
+  } Keys;
 
-	CString InstrumentMenuPath;
+  struct {
+    int    iLevelAPU1;
+    int    iLevelAPU2;
+    int    iLevelVRC6;
+    int    iLevelVRC7;
+    int    iLevelMMC5;
+    int    iLevelFDS;
+    int    iLevelN163;
+    int    iLevelS5B;
+  } ChipLevels;
 
-private:
-	template<class T>
-	CSettingBase *AddSetting(LPCTSTR pSection, LPCTSTR pEntry, T tDefault, T *pVariable);		// // //
-	void SetupSettings();
+  CString InstrumentMenuPath;
 
 private:
-	static const int MAX_SETTINGS = 128;
+  template<class T>
+  CSettingBase *AddSetting(LPCTSTR pSection, LPCTSTR pEntry, T tDefault, T *pVariable);    // // //
+  void SetupSettings();
 
 private:
-	CSettingBase *m_pSettings[MAX_SETTINGS];
-	int m_iAddedSettings;
+  static const int MAX_SETTINGS = 128;
+
+private:
+  CSettingBase *m_pSettings[MAX_SETTINGS];
+  int m_iAddedSettings;
 };
 
 

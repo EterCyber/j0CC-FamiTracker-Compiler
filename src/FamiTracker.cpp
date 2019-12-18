@@ -20,8 +20,8 @@
 ** must bear this legend.
 */
 
-#include "json/json.hpp"		// // //
-#include "version.h"		// // //
+#include "json/json.hpp"    // // //
+#include "version.h"    // // //
 #include "stdafx.h"
 #include "FamiTracker.h"
 #include "FamiTrackerDoc.h"
@@ -33,15 +33,15 @@
 #include "ChannelMap.h"
 #include "CustomExporters.h"
 // #include "CommandLineExport.h"
-#include "WinSDK/VersionHelpers.h"		// // //
+#include "WinSDK/VersionHelpers.h"    // // //
 
-#include "WinInet.h"		// // //
+#include "WinInet.h"    // // //
 #pragma comment(lib, "wininet.lib")
 
 // Single instance-stuff
-const TCHAR FT_SHARED_MUTEX_NAME[]	= _T("FamiTrackerMutex");	// Name of global mutex
-const TCHAR FT_SHARED_MEM_NAME[]	= _T("FamiTrackerWnd");		// Name of global memory area
-const DWORD	SHARED_MEM_SIZE			= 256;
+const TCHAR FT_SHARED_MUTEX_NAME[]  = _T("FamiTrackerMutex");  // Name of global mutex
+const TCHAR FT_SHARED_MEM_NAME[]  = _T("FamiTrackerWnd");    // Name of global memory area
+const DWORD  SHARED_MEM_SIZE      = 256;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -49,14 +49,14 @@ const DWORD	SHARED_MEM_SIZE			= 256;
 
 void ftm_convert_to_nsf(const TCHAR *ftm_filepath, const TCHAR *nsf_filepath)
 {
-	CFamiTrackerDoc *pExportDoc = new CFamiTrackerDoc();
-	CCompiler *pComplie = nullptr;
-	
-	pExportDoc->OnOpenDocument(ftm_filepath);
-	pComplie = new CCompiler(pExportDoc, NULL);
+  CFamiTrackerDoc *pExportDoc = new CFamiTrackerDoc();
+  CCompiler *pComplie = nullptr;
+  
+  pExportDoc->OnOpenDocument(ftm_filepath);
+  pComplie = new CCompiler(pExportDoc, NULL);
 
-	pComplie->ExportNSF(nsf_filepath, pExportDoc->GetMachine());
+  pComplie->ExportNSF(nsf_filepath, pExportDoc->GetMachine());
 
-	delete pComplie;
-	delete pExportDoc;
+  delete pComplie;
+  delete pExportDoc;
 }

@@ -27,33 +27,33 @@ class CSequence;
 class CInstrument;
 class CSeqInstrumentInterface;
 
-class CSeqInstrument : public CInstrument, public CSeqInstrumentInterface		// // //
+class CSeqInstrument : public CInstrument, public CSeqInstrumentInterface    // // //
 {
 public:
-	CSeqInstrument(inst_type_t type);
-	virtual CInstrument* Clone() const;
-	virtual void	Setup();
-	virtual void	Store(CDocumentFile *pDocFile);
-	virtual bool	Load(CDocumentFile *pDocFile);
-	virtual void	SaveFile(CInstrumentFile *pFile);
-	virtual bool	LoadFile(CInstrumentFile *pFile, int iVersion);
-	virtual int		Compile(CChunk *pChunk, int Index);
-	virtual bool	CanRelease() const;
+  CSeqInstrument(inst_type_t type);
+  virtual CInstrument* Clone() const;
+  virtual void  Setup();
+  virtual void  Store(CDocumentFile *pDocFile);
+  virtual bool  Load(CDocumentFile *pDocFile);
+  virtual void  SaveFile(CInstrumentFile *pFile);
+  virtual bool  LoadFile(CInstrumentFile *pFile, int iVersion);
+  virtual int    Compile(CChunk *pChunk, int Index);
+  virtual bool  CanRelease() const;
 
-	virtual int		GetSeqEnable(int Index) const;
-	virtual int		GetSeqIndex(int Index) const;
-	virtual void	SetSeqIndex(int Index, int Value);
-	virtual void	SetSeqEnable(int Index, int Value);
+  virtual int    GetSeqEnable(int Index) const;
+  virtual int    GetSeqIndex(int Index) const;
+  virtual void  SetSeqIndex(int Index, int Value);
+  virtual void  SetSeqEnable(int Index, int Value);
 
-	virtual CSequence *GetSequence(int SeqType) const;		// // //
-	virtual void	SetSequence(int SeqType, CSequence *pSeq);		// // // register sequence in document
+  virtual CSequence *GetSequence(int SeqType) const;    // // //
+  virtual void  SetSequence(int SeqType, CSequence *pSeq);    // // // register sequence in document
 
-	// static const int SEQUENCE_TYPES[] = {SEQ_VOLUME, SEQ_ARPEGGIO, SEQ_PITCH, SEQ_HIPITCH, SEQ_DUTYCYCLE};
-	virtual LPCTSTR	GetSequenceName(int Index) const { return nullptr; }		// // //
+  // static const int SEQUENCE_TYPES[] = {SEQ_VOLUME, SEQ_ARPEGGIO, SEQ_PITCH, SEQ_HIPITCH, SEQ_DUTYCYCLE};
+  virtual LPCTSTR  GetSequenceName(int Index) const { return nullptr; }    // // //
 
 protected:
-	virtual void	CloneFrom(const CInstrument *pSeq);		// // //
-	CSeqInstrument *CopySequences(const CSeqInstrument *const src);		// // //
-	int		m_iSeqEnable[SEQ_COUNT];
-	int		m_iSeqIndex[SEQ_COUNT];
+  virtual void  CloneFrom(const CInstrument *pSeq);    // // //
+  CSeqInstrument *CopySequences(const CSeqInstrument *const src);    // // //
+  int    m_iSeqEnable[SEQ_COUNT];
+  int    m_iSeqIndex[SEQ_COUNT];
 };

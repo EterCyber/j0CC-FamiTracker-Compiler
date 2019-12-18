@@ -24,44 +24,44 @@
 
 class CChannelHandlerFDS : public FrequencyChannelHandler, public CChannelHandlerInterfaceFDS {
 public:
-	CChannelHandlerFDS();
-	virtual void RefreshChannel();
+  CChannelHandlerFDS();
+  virtual void RefreshChannel();
 protected:
-	void	HandleNoteData(stChanNote *pNoteData, int EffColumns) override;
-	bool	HandleEffect(effect_t EffNum, unsigned char EffParam) override;		// // //
-	void	HandleEmptyNote() override;
-	void	HandleCut() override;
-	void	HandleRelease() override;
-	int		CalculateVolume() const override;		// // //
-	bool	CreateInstHandler(inst_type_t Type) override;		// // //
-	void	ClearRegisters() override;
-	CString	GetCustomEffectString() const override;		// // //
+  void  HandleNoteData(stChanNote *pNoteData, int EffColumns) override;
+  bool  HandleEffect(effect_t EffNum, unsigned char EffParam) override;    // // //
+  void  HandleEmptyNote() override;
+  void  HandleCut() override;
+  void  HandleRelease() override;
+  int    CalculateVolume() const override;    // // //
+  bool  CreateInstHandler(inst_type_t Type) override;    // // //
+  void  ClearRegisters() override;
+  CString  GetCustomEffectString() const override;    // // //
 
-public:		// // //
-	// FDS functions
-	void SetFMSpeed(int Speed);
-	void SetFMDepth(int Depth);
-	void SetFMDelay(int Delay);
-	// void SetFMEnable(bool Enable);
-	void FillWaveRAM(const char *pBuffer);		// // //
-	void FillModulationTable(const char *pBuffer);		// // //
+public:    // // //
+  // FDS functions
+  void SetFMSpeed(int Speed);
+  void SetFMDepth(int Depth);
+  void SetFMDelay(int Delay);
+  // void SetFMEnable(bool Enable);
+  void FillWaveRAM(const char *pBuffer);    // // //
+  void FillModulationTable(const char *pBuffer);    // // //
 protected:
-	// FDS control variables
-	int m_iModulationSpeed;
-	int m_iModulationDepth;
-	int m_iModulationDelay;
-	// Modulation table
-	char m_iModTable[32];
-	char m_iWaveTable[64];
+  // FDS control variables
+  int m_iModulationSpeed;
+  int m_iModulationDepth;
+  int m_iModulationDelay;
+  // Modulation table
+  char m_iModTable[32];
+  char m_iWaveTable[64];
 protected:
-	int m_iVolModMode;		// // // 0CC: make an enum for this
-	int m_iVolModRate;
-	bool m_bVolModTrigger;
+  int m_iVolModMode;    // // // 0CC: make an enum for this
+  int m_iVolModRate;
+  bool m_bVolModTrigger;
 
-	bool m_bAutoModulation;		// // //
-	int m_iModulationOffset;
+  bool m_bAutoModulation;    // // //
+  int m_iModulationOffset;
 
-	int m_iEffModDepth;
-	int m_iEffModSpeedHi;
-	int m_iEffModSpeedLo;
+  int m_iEffModDepth;
+  int m_iEffModSpeedHi;
+  int m_iEffModSpeedLo;
 };
